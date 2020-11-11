@@ -15,7 +15,7 @@
 }
 
 .fit {
-    height: 87vh;
+    height: 85vh !important;
 }
 
 .welcome {
@@ -45,6 +45,6 @@
     }
 
     .boton_naranja {
-        background-color: #DE5934;
+        background-color: #DE5934 !important;
         cursor: pointer;
     }
