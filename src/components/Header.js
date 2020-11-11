@@ -28,7 +28,7 @@ class Header extends Component {
               <li className="nav-item">
                 {/* GENERATE */}
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                   href="#generate"
                 >
                   <span className="ml-2">Generate</span>
@@ -37,7 +37,7 @@ class Header extends Component {
               <li className="nav-item">
                 {/* SHOP */}
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                   href="#shop"
                 >
                   <span className="ml-2">Shop</span>
@@ -46,7 +46,7 @@ class Header extends Component {
               <li className="nav-item">
                 {/* ABOUT US */}
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                   href="#aboutus"
                 >
                   <span className="ml-2">About Us</span>
