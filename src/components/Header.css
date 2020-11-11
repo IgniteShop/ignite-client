@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
+* {
+    color: #5763DD;
+    /* padding: 0px;
+    margin: 0px; */
+    font-family: 'Quicksand', sans-serif;
+}
+
+.background {
+    background-color: #F5F6F8;
+    /* background-color: red; */
+}
+
+.ignite {
+    font-weight: 700;
+}
+
+.boton {
+    background-color: #5763DD;
+    border-radius: 15px;
+    cursor: pointer;
+}

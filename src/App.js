@@ -1,10 +1,21 @@
 import "./App.css";
+import Header from "./components/Header";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from './components/Login.js';
+import Register from './components/Register.js';
 
 function App() {
   return (
-    <div className="hola bg-blue-500">
-        Hi
-    </div>
+    <Router>
+      <div className="app__main">
+        <Header />
+        <Switch>
+          <Route path='/register' component={Register}/>
+          <Route path='/login' component={Login}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
