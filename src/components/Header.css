@@ -19,4 +19,5 @@
 .boton {
     background-color: #5763DD;
     border-radius: 15px;
+    cursor: pointer;
 }
