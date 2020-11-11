@@ -1,9 +1,9 @@
 import "./Header.css";
-import logo from "../img/logo.png";
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Login from './Login.js';
-import Register from './Register.js';
+import logo from "../img/logo.svg";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from "./Login.js";
+import Register from "./Register.js";
 
 class Header extends Component {
   render() {
@@ -13,12 +13,13 @@ class Header extends Component {
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             {/* Logo y nombre de app */}
             <div class="flex">
-              <img src={logo} alt="Logo" />
               <a
                 className="ignite text-lg font-bold leading-relaxed inline-block ml-2 mr-4 py-2 whitespace-no-wrap"
                 href="#home"
               >
-              <Link to={'/'}>Ignite</Link>
+                <Link to={"/"}>
+                  <img class="logo" src={logo} alt="Logo" />
+                </Link>
               </a>
             </div>
           </div>
@@ -55,7 +56,7 @@ class Header extends Component {
               <li className="nav-item">
                 {/* BOTON SIGN UP */}
                 <button class="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
-                  <Link to={'/register'}>Sign Up</Link>                  
+                  <Link to={"/register"}>Sign Up</Link>
                 </button>
               </li>
             </ul>

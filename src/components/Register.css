@@ -15,7 +15,7 @@
 }
 
 .fit {
-    height: 87vh;
+    height: 85vh !important;
 }
 
 .welcome {
