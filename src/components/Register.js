@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Register.css";
 import shirts from "../img/MainShirts.png";
 import line from "../img/line.png";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Login.js";
 
-class Register extends Component {
-  render() {
+function Register(){
     return (
       <div class="flex mb-4 background">
         {/* Titles */}
@@ -63,6 +62,5 @@ class Register extends Component {
       </div>
     );
   }
-}
 
 export default Register;
