@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import shirts from "../img/MainShirts.png";
 import line from "../img/line.png";
@@ -6,6 +6,20 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Login.js";
 
 function Register(){
+  const [username, setUsername] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+  const [passwordConfirm, setPasswordConfirm] = useState(undefined);
+  const [acceptTerms, setAcceptTerms] = useState('off');
+
+  const signUp = () => {
+    // TODO: Verificar errores
+    
+    if(password === passwordConfirm && acceptTerms === 'on'){
+      
+
+    }
+  }
+
     return (
       <div class="flex mb-4 background">
         {/* Titles */}
@@ -18,20 +32,30 @@ function Register(){
           </div>
           {/* Inputs */}
           <div class="login px-32 py-2 flex flex-col">
-            <input class="px-5 py-2" placeholder="Username"></input>
-            <input class="px-5 py-2 mt-5" placeholder="Password"></input>
+            <input 
+              class="px-5 py-2" 
+              placeholder="Username" 
+              onChange={event => setUsername(event.target.value)}></input>
+            <input 
+              class="px-5 py-2 mt-5" 
+              placeholder="Password" 
+              onChange={event => setPassword(event.target.value)}></input>
             <input
               class="px-5 py-2 mt-5"
               placeholder="Confirm Password"
+              onChange={event => setPasswordConfirm(event.target.value)}
             ></input>
           </div>
           {/* Create Button */}
-          <div class="px-32 py-5 flex flex-col botones">
+          <div class="px-32 py-5 flex flex-col botones" onClick={signUp}>
             <button class="px-5 py-3 boton_verde">Create Account</button>
           </div>
           {/* Privacy Policy */}
           <div class="privacy px-32 py-2 flex flex-row">
-            <input class="checkbox mt-1" type="checkbox" />
+            <input 
+              class="checkbox mt-1" 
+              type="checkbox" 
+              onChange={event => setAcceptTerms(event.target.value)}/>
             <p class="ml-5 text-center">
               I accept Ignite's Terms of Service and Privacy Policy
             </p>
