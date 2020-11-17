@@ -1,9 +1,7 @@
 import "./Header.css";
 import logo from "../img/logo.svg";
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./Login.js";
-import Register from "./Register.js";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -12,13 +10,13 @@ class Header extends Component {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             {/* Logo y nombre de app */}
-            <div class="flex">
+            <div className="flex">
               <a
                 className="ignite text-lg font-bold leading-relaxed inline-block ml-2 mr-4 py-2 whitespace-no-wrap"
                 href="#home"
               >
                 <Link to={"/"}>
-                  <img class="logo" src={logo} alt="Logo" />
+                  <img className="logo" src={logo} alt="Logo" />
                 </Link>
               </a>
             </div>
@@ -55,7 +53,7 @@ class Header extends Component {
               </li>
               <li className="nav-item">
                 {/* BOTON SIGN UP */}
-                <button class="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
+                <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
                   <Link to={"/register"}>Sign Up</Link>
                 </button>
               </li>
