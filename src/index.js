@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './tailwind.output.css';
+import { FirebaseAppProvider } from "reactfire";
+import config from "./configuration";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <FirebaseAppProvider firebaseConfig={config}>
+        <App />
+      </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
