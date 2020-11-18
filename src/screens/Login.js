@@ -16,8 +16,8 @@ class Login extends Component {
             </h3>
           </div>
           <div className="login px-32 py-5 flex flex-col">
-            <input className="px-5 py-2" placeholder="Username"></input>
-            <input className="px-5 py-2 mt-5" placeholder="Password"></input>
+            <input className="px-5 py-2" placeholder="Email"></input>
+            <input type="password" className="px-5 py-2 mt-5" placeholder="Password"></input>
           </div>
           <div className="px-32 py-5 flex flex-col botones">
             <button className="px-5 py-3 boton_verde">Login</button>

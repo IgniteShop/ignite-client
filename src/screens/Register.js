@@ -43,13 +43,20 @@ function Register(){
           <div className="login px-32 py-2 flex flex-col">
             <input 
               className="px-5 py-2" 
-              placeholder="Username" 
+              placeholder="Name" 
               onChange={event => setUsername(event.target.value)}></input>
+            {/* Falta el onChange de Email */}
             <input 
+              className="px-5 py-2 mt-5" 
+              placeholder="Email" 
+            ></input>
+            <input 
+              type="password"
               className="px-5 py-2 mt-5" 
               placeholder="Password" 
               onChange={event => setPassword(event.target.value)}></input>
             <input
+              type="password"
               className="px-5 py-2 mt-5"
               placeholder="Confirm Password"
               onChange={event => setPasswordConfirm(event.target.value)}
