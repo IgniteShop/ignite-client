@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
-import { useFirebaseApp, useUser, useFirestore, useFirestoreDocData } from "reactfire";
+import { useFirebaseApp, useUser } from "reactfire";
 import 'firebase/auth';
 import 'firebase/database';
 
