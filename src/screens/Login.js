@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { Suspense } from "react";
 import "./Login.css";
 import shirts from "../img/MainShirts.png";
 import { Link } from "react-router-dom";
+import LoginForm from "../components/LoginForm";
+import { useAuth } from "reactfire";
 
 function Login (){
-  const [username, setUsername] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-
   return (
     <div className="flex mb-4 background">
       {/* Welcome Back */}
@@ -17,16 +16,9 @@ function Login (){
             Log in to purchase some unique products
           </h3>
         </div>
-        <div className="login px-32 py-5 flex flex-col">
-          <input className="px-5 py-2" placeholder="Email"></input>
-          <input type="password" className="px-5 py-2 mt-5" placeholder="Password"></input>
-        </div>
-        <div className="px-32 py-5 flex flex-col botones">
-          <button className="px-5 py-3 boton_verde">Login</button>
-          <button className="px-5 py-3 boton_naranja mt-5 ">
-            Login with DuckDuckGo
-          </button>
-        </div>
+        <Suspense fallback={<p>Loading...</p>}>
+          <LoginForm/>
+        </Suspense>
         <div className="forgot px-32 py-5 text-right">
           <h4>Forgot your password?</h4>
           <h4 className="mt-5">
