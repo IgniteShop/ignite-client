@@ -3,7 +3,6 @@ import "./Login.css";
 import shirts from "../img/MainShirts.png";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
-import { useAuth } from "reactfire";
 
 function Login (){
   return (
