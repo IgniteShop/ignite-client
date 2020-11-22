@@ -82,7 +82,7 @@ function Register(){
             <button className="px-5 py-3 boton_naranja">
               Sign up with DuckDuckGo
             </button>
-            <h4 className="mt-5 text-center">
+            <h4 className="mt-4 text-center">
               Already have an account? Login{" "}
               <Link to={"/login"}>
                 <b>

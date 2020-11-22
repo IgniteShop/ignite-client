@@ -3,15 +3,13 @@
 
 * {
     color: #5763DD;
-    /* padding: 0px;
-    margin: 0px; */
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
 }
 
 .background {
     background-color: #F5F6F8;
-    /* background-color: red; */
+    margin: 0px !important;
 }
 
 .fit {

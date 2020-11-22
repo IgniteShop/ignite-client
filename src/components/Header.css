@@ -2,14 +2,11 @@
 
 * {
     color: #5763DD;
-    /* padding: 0px;
-    margin: 0px; */
     font-family: 'Quicksand', sans-serif;
 }
 
 .background {
     background-color: #F5F6F8;
-    /* background-color: red; */
 }
 
 .ignite {
@@ -24,4 +21,11 @@
 
 .logo {
     width: 50%;
+}
+
+.active span {
+    background-color: #5763DD;
+    color: white;
+    padding: 3px 12px 3px 12px;
+    border-radius: 10px;
 }

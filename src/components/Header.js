@@ -1,7 +1,7 @@
 import "./Header.css";
 import logo from "../img/logo.svg";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -39,7 +39,7 @@ class Header extends Component {
                   className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                   href="#shop"
                 >
-                  <span className="ml-2">Shop</span>
+                  <NavLink to={"/shop"} activeClassName={"active"}><span className="ml-2">Shop</span></NavLink>
                 </a>
               </li>
               <li className="nav-item">
