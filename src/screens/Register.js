@@ -1,36 +1,14 @@
-import React, { useState } from "react";
+import React, { Suspense } from "react";
 import "./Register.css";
 import shirts from "../img/MainShirts.png";
 import line from "../img/line.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./Login.js";
-import { useFirebaseApp } from "reactfire";
+import SignUpForm from "../components/SignUpForm"
+import { Link } from "react-router-dom";
 import 'firebase/auth';
 
 function Register(){
-  const firebase = useFirebaseApp();
-  
-  const [username, setUsername] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-  const [passwordConfirm, setPasswordConfirm] = useState(undefined);
-  const [acceptTerms, setAcceptTerms] = useState('off');
-
-  const signUp = () => {
-    // TODO: Verificar errores
-    
-    if(password === passwordConfirm && acceptTerms === 'on'){
-      firebase.auth().createUserWithEmailAndPassword(username, password)
-      .then(result => {
-        console.log(result);
-        alert("Usuario creado");
-      }).catch(error => {
-        alert(error);
-      });
-    }
-  }
-
-    return (
-      <div className="flex mb-4 background">
+  return (
+    <div className="flex mb-4 background">
         {/* Titles */}
         <div className="fit flex w-1/2 flex-col justify-center">
           <div className="px-32 py-5 text-center">
@@ -40,42 +18,9 @@ function Register(){
             </h3>
           </div>
           {/* Inputs */}
-          <div className="login px-32 py-2 flex flex-col">
-            <input 
-              className="px-5 py-2" 
-              placeholder="Name" 
-              onChange={event => setUsername(event.target.value)}></input>
-            {/* Falta el onChange de Email */}
-            <input 
-              className="px-5 py-2 mt-5" 
-              placeholder="Email" 
-            ></input>
-            <input 
-              type="password"
-              className="px-5 py-2 mt-5" 
-              placeholder="Password" 
-              onChange={event => setPassword(event.target.value)}></input>
-            <input
-              type="password"
-              className="px-5 py-2 mt-5"
-              placeholder="Confirm Password"
-              onChange={event => setPasswordConfirm(event.target.value)}
-            ></input>
-          </div>
-          {/* Create Button */}
-          <div className="px-32 py-5 flex flex-col botones" onClick={signUp}>
-            <button className="px-5 py-3 boton_verde">Create Account</button>
-          </div>
-          {/* Privacy Policy */}
-          <div className="privacy px-32 py-2 flex flex-row">
-            <input 
-              className="checkbox mt-1" 
-              type="checkbox" 
-              onChange={event => setAcceptTerms(event.target.value)}/>
-            <p className="ml-5 text-center">
-              I accept Ignite's Terms of Service and Privacy Policy
-            </p>
-          </div>
+          <Suspense fallback={<p>Loading...</p>}>
+            <SignUpForm/>
+          </Suspense>
           <img className="h-auto px-32 py-4" src={line} alt="Line" />
           {/* Sign up */}
           <div className="forgot px-32 py-3 text-right flex flex-col">
@@ -92,14 +37,13 @@ function Register(){
             </h4>
           </div>
         </div>
-         {/* Shirt Image */}
-         <div className="fit flex w-1/2 items-center background">
+        {/* Shirt Image */}
+        <div className="fit flex w-1/2 items-center background">
           <div className="px-10 py-10">
             <img src={shirts} alt="Shirts" />
           </div>
         </div>
-      </div>
-    );  
-  }
-
+    </div>
+  );  
+}
   export default Register;
