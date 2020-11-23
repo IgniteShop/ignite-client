@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+* {
+    color: #5763DD;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+.background {
+    background-color: #F5F6F8;
+}
+
+.fit {
+    height: 88vh !important;
+    margin: 0px !important;
+}
+
+.fit2 {
+    height: 71vh;
+}
+
+.titleBar h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.search {
+    margin-top: 1%;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 3px #EAEAEA;
+    color: #737373;
+}
+
+.clock-icon path{
+    fill: red !important;
+}
+
+.quick {
+    color: red;
+}
+
+.products {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.main {
+    overflow-x: hidden;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px 0px 20px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 4px 4px 3px #d8d8d8;
+}
+
+    .preview__title h1 {
+        font-size: 1.2em;
+    }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown__main {
+    margin-top: 5px;
+}
+
+.dropdown button {
+    border: 1px solid #5763DD;
+}
+
+.option li {
+    border: 1px solid #5763DD;
+    background-color: white;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #626ddf;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6e76dd;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #5e67e4;
+}
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-track:active {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
