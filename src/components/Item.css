@@ -22,7 +22,7 @@
     font-weight: 700;
 }
 
-.product {
+.item {
     width: auto;
     float: left;
     box-sizing: border-box;
@@ -36,21 +36,21 @@
     box-shadow: 5px 5px 3px #adadad;
 }
 
-.product__image {
+.item__image {
     width: 11em;
     overflow: hidden;
 }
 
-.product__title {
+.item__title {
     font-size: 0.7em;
     
 }
-    .product__title p {
+    .item__title p {
         margin: 10px;
         color: black;
     }
 
-    .product__title button {
+    .item__title button {
         margin: 10px;
         color: white;
         background-color: #598FE7;

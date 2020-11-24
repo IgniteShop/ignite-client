@@ -1,7 +1,7 @@
 import React from "react";
 import "./Shop.css";
 import searchIcon from "../img/searchIcon.png";
-import Product from "../components/Product";
+import Item from "../components/Item";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
@@ -32,91 +32,91 @@ function Shop() {
         <div className="flex w-5/6">
           {/* Main Content */}
           <div className="products">            
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />        
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
             />
-            <Product
+            <Item
               id="1"
               title={"Noto Space"}
               image={
