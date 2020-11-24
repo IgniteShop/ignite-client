@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
+
+* {
+    color: #5763DD;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.background {
+    background-color: #F5F6F8;
+}
+
+.fit {
+    height: 89vh !important;
+    margin: 0px !important;
+}
+
+.fit2 {
+    height: 71vh;
+}
+
+.mainStats {
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+    width: 70%;
+}
+
+.info {
+    padding-left: 40px;
+    width: 70%;
+}
+
+.title {
+    width: fit-content;
+    font-weight: 600;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.padding-x-30 {
+    padding: 3px 40px 3px 40px;
+}
+
+.product__image img {
+    width: 22em;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 7px 9px 4px #c3c3c3;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown button {
+    border: 2px solid #5763DD;
+    border-radius: 10px;
+}
+
+.option li {
+    border: 1px solid #5763DD;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.size-button {
+    width: 70%;
+}
+    .size-button button {
+        border-radius: 10px;
+        background-color: white;
+        color: #5763DD;
+    }
+
+    .size-button button:hover {
+        background-color: #5763DD;
+        color: white;
+    }
+
+.select {
+    width: 30%;
+}
+
+.price__title {
+    font-weight: 600;
+    width: fit-content;
+}
+
+.price__tag {
+    width: fit-content;
+}
+    .price__tag h1 {
+        font-weight: 600;
+        color: #858585;
+    }
+
+.cart__button {
+    width: fit-content;
+}
+    .cart__button button {
+        background-color: #5763DD;
+        color: white;
+        border-radius: 10px;
+    }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #626ddf;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6e76dd;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #5e67e4;
+}
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-track:active {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
