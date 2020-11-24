@@ -6,6 +6,7 @@ import Login from './screens/Login.js';
 import Register from './screens/Register.js';
 import { AuthCheck } from "reactfire";
 import Shop from './screens/Shop.js';
+import Product from './screens/Product.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path='/register' component={Register}/>
               <Route path='/login' component={Login}/>  
               <Route path='/shop' component={Shop}/>
+              <Route path='/product' component={Product}/>
             </Switch>
           </div>
         </Router>
