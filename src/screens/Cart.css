@@ -12,7 +12,7 @@
 }
 
 .fit-cart {
-    height: 89vh !important;
+    height: 82vh !important;
     margin: 0px !important;
 }
 
@@ -40,6 +40,42 @@
         color: #8B8D9F;
         font-weight: 400;
     }
+
+.final__items {
+    overflow-y: auto;
+}
+
+.checkout__main {
+    padding: 2%;
+}
+
+.checkout__content {
+    height: 25%;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px #d4d4d4;
+}
+
+.total {
+    padding: 25px 35px 25px 35px;
+    margin-bottom: -5px;
+}
+    .total h1 {
+        font-weight: 600;
+    }
+
+    .total__price {
+        color: #8B8D9F;
+    }
+
+.checkout__button button {
+    background-color: #6FCA67;
+    color: white;
+    font-weight: 600;
+    padding: 10px 85px 10px 85px;
+    border-radius: 5px;
+}
 
 ::-webkit-scrollbar {
   width: 10px;
