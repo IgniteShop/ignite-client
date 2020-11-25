@@ -22,11 +22,11 @@
     font-weight: 700;
 }
 
-.item {
+.itemSingle {
     width: auto;
     float: left;
     box-sizing: border-box;
-    margin: 5px 14px 15px 20px;
+    margin: 5px 14px 15px 50px;
     background-color: white;
     height: 47%;
     display: flex;
@@ -36,7 +36,7 @@
     box-shadow: 5px 5px 3px #adadad;
 }
 
-.item__image {
+.item__imageSingle {
     width: 11em;
     overflow: hidden;
 }
