@@ -3,8 +3,8 @@ import "./Item.css";
 
 function Item({ id, title, image }) {
   return (
-    <div className="item">
-      <div className="item__image">
+    <div className="itemSingle">
+      <div className="item__imageSingle">
         <img src={image} alt="" />
       </div>
       <div className="item__title flex">
