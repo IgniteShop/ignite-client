@@ -33,15 +33,15 @@
   flex-direction: row;
   align-items: center;
   border-radius: 15px;
-  box-shadow: 5px 5px 3px #d4d4d4;
+  /* box-shadow: 5px 5px 3px #d4d4d4; */
   justify-content: space-between;
 }
 
 .item__image {
   width: 6em;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 3px 3px 3px #bebebe;
+  border-radius: 8px;
+  /* box-shadow: 3px 3px 3px #bebebe; */
 }
 
 .price h3 {
@@ -59,7 +59,8 @@
 
 .botones button {
   text-align: center;
-  font-weight: 400;
+  font-weight: 200;
+  font-size: 15px;
   padding: 5px 20px 5px 20px;
   color: white;
   border-radius: 20px;

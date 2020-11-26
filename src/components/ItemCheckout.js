@@ -3,11 +3,11 @@ import "./ItemCheckout.css";
 
 function ItemCheckout({ id, title, image, price }) {
   return (
-    <div className="item ml-24">
+    <div className="item ml-24 shadow-lg">
       {/* Info */}
-      <div className="flex ml-5">
+      <div className="flex ml-4">
         {/* Image */}
-        <div className="item__image">
+        <div className="item__image shadow-md">
           <img src={image} alt="" />
         </div>
         {/* Title & Price */}
@@ -24,8 +24,8 @@ function ItemCheckout({ id, title, image, price }) {
       </div>
       {/* Buttons */}
       <div className="flex flex-col m-10 botones">
-        <button className="edit">Edit</button>
-        <button className="delete mt-2">Delete</button>
+        <button className="edit w-32 h-8">Edit</button>
+        <button className="delete w-32 h-8 mt-2">Delete</button>
       </div>
     </div>
   );

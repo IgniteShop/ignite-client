@@ -3,7 +3,7 @@ import "./Item.css";
 
 function Item({ id, title, image }) {
   return (
-    <div className="itemSingle">
+    <div className="itemSingle shadow-lg ">
       <div className="item__imageSingle">
         <img src={image} alt="" />
       </div>
