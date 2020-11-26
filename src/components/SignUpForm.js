@@ -40,8 +40,8 @@ function LoginForm(){
                 model = ".username"
                 onChange={event => setUsername(event.target.value)}/>
                 <Errors
-                className="" show="touched" model=".username" messages={{
-                required: "This field is requiered"
+                className="required" show="touched" model=".username" messages={{
+                required: "This field is required"
                 }}/>
                 <Control.text 
                 className="px-5 py-2 mt-5" 
@@ -50,7 +50,7 @@ function LoginForm(){
                 model=".email"
                 onChange={event => setEmail(event.target.value)}/>
                 <Errors
-                className="" show="touched" model=".email" messages={{
+                className="required" show="touched" model=".email" messages={{
                 validEmail: "Please enter a valid email"
                 }}/>
                 <Control.text 
@@ -61,8 +61,8 @@ function LoginForm(){
                 model=".password"
                 onChange={event => setPassword(event.target.value)}/>
                 <Errors
-                className="" show="touched" model=".password" messages={{
-                required: "This field is requiered",
+                className="required" show="touched" model=".password" messages={{
+                required: "This field is required",
                 minLength: "Password must be at least 6 characters"
                 }}/>
                 <Control.text
@@ -72,13 +72,9 @@ function LoginForm(){
                 model=".repeatPassword"
                 onChange={event => setPasswordConfirm(event.target.value)}/>
                 <Errors
-                className="" show="touched" model="form" messages={{
+                className="required" show="touched" model="form" messages={{
                 validPassword: "Passwords must match"
                 }}/>
-            </div>
-            {/* Create Button */}
-            <div className="px-32 py-5 flex flex-col botones">
-                <button className="px-5 py-3 boton_verde" type="submit">Create Account</button>
             </div>
             {/* Privacy Policy */}
             <div className="privacy px-32 py-2 flex flex-row">
@@ -87,9 +83,13 @@ function LoginForm(){
                 type="checkbox" 
                 model=".policy"
                 onChange={event => setAcceptTerms(event.target.value)}/>
-                <p className="ml-5 text-center">
+                <p className="ml-3 text-center">
                 I accept Ignite's Terms of Service and Privacy Policy
                 </p>
+            </div>
+            {/* Create Button */}
+            <div className="px-32 py-3 flex flex-col botones">
+                <button className="px-5 py-3 boton_verde" type="submit">Create Account</button>
             </div>
         </LocalForm>);
 }

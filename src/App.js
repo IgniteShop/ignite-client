@@ -15,11 +15,11 @@ function App() {
           <div className="app__main">
             <Header />
             <Switch>
-              <Route path='/register' component={Register}/>
-              <Route path='/login' component={Login}/>  
-              <Route path='/shop' component={Shop}/>
-              <Route path='/product' component={Product}/>
-              <Route path='/cart' component={Cart}/>
+              <Route exact path='/register' component={Register}/>
+              <Route exact path='/login' component={Login}/>  
+              <Route exact path='/shop' component={Shop}/>
+              <Route exact path='/product' component={Product}/>
+              <Route exact path='/cart' component={Cart}/>
             </Switch>
           </div>
         </Router>
