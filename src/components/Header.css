@@ -3,6 +3,7 @@
 * {
     color: #5763DD;
     font-family: 'Quicksand', sans-serif;
+    outline: none;
 }
 
 .background {
@@ -20,7 +21,7 @@
 }
 
 .logo {
-    width: 50%;
+    width: 60%;
 }
 
 .active span {
