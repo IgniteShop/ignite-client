@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './screens/Login.js';
 import Register from './screens/Register.js';
 import { AuthCheck } from "reactfire";
+import Generate from './screens/Generate.js';
 import Shop from './screens/Shop.js';
 import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
@@ -17,6 +18,7 @@ function App() {
 		<Switch>
 			<Route path='/register' component={Register}/>
 			<Route path='/login' component={Login}/>  
+			<Route path='/generate' component={Generate}/>
 			<Route path='/shop' component={Shop}/>
 			<Route path='/product' component={Product}/>
 			<Route path='/cart' component={Cart}/>
