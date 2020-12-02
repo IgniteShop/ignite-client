@@ -7,6 +7,7 @@ import Register from './screens/Register.js';
 import { AuthCheck } from "reactfire";
 import Generate from './screens/Generate.js';
 import Shop from './screens/Shop.js';
+import Account from './screens/Account.js';
 import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
 
@@ -20,6 +21,7 @@ function App() {
 			<Route path='/login' component={Login}/>  
 			<Route path='/generate' component={Generate}/>
 			<Route path='/shop' component={Shop}/>
+			<Route path='/account' component={Account}/>
 			<Route path='/product' component={Product}/>
 			<Route path='/cart' component={Cart}/>
 		</Switch>
