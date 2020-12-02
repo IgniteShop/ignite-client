@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+* {
+    color: #5763DD;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+.background {
+    background-color: #F5F6F8;
+}
+
+.fit-account {
+    height: 91vh !important;
+    margin: 0px !important;
+}
+
+.fit2-account {
+    height: 71vh;
+}
+
+.titleBar h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.sidebar-account {
+    height: -webkit-fill-available;
+    border-radius: 10px;
+    box-shadow: 2px 4px 4px #cecece;
+    background-color: #F4F4F4;
+    margin-left: 22%;
+}
+
+.profile__image {
+    width: 70%;
+}
+
+.profile__image img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.name h1 {
+    color: black;
+    font-weight: 400;   
+}
+
+.email p {
+    font-weight: 400;
+    color: black;
+}
+
+.edit-icon path {
+    fill: #598FE7 !important;
+}
+
+.change__password {
+    background-color: #5763DD;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 25px 10px 25px;
+    font-weight: 600;
+}
+
+.signout {
+    background-color: #DD5757;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 25px 10px 25px;
+    font-weight: 600;
+}
+
+.image-container {
+    overflow-x: auto;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.images-account {
+    height: 100%;
+    margin-top: 40px;
+    padding: 0px 0px 0px 20px;
+    overflow: hidden;
+}
+
+.saved-images h2 {
+    font-weight: 400;
+}
+
+.account h1 {
+    font-weight: 600;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #626ddf;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6e76dd;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #5e67e4;
+}
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-track:active {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
