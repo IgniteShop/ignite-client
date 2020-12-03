@@ -1,12 +1,14 @@
-import React from "react";
+import React, {Suspense} from "react";
 import "./Shop.css";
 import searchIcon from "../img/searchIcon.png";
-import Item from "../components/Item";
 import { Link } from "react-router-dom";
+import ProductContainer from "../components/ProductContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
+
 function Shop() {
+
   return (
     <div className="fit flex flex-col mb-4">
       {/* Shop Title and Search Bar */}
@@ -31,99 +33,9 @@ function Shop() {
         {/* Content */}
         <div className="flex w-5/6">
           {/* Main Content */}
-          <div className="products">            
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />        
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Item
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-          </div>
+          <Suspense fallback={<p>Loading...</p>}>
+            <ProductContainer/>
+          </Suspense>
         </div>
         {/* Preview */}
         <div className="w-1/6 background">
