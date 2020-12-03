@@ -12,8 +12,8 @@ function Register(){
         {/* Titles */}
         <div className="fit flex w-1/2 flex-col justify-center">
           <div className="px-32 py-5 text-center">
-            <h1 className="welcome text-5xl">Join Ignite!</h1>
-            <h3 className="px-12 text-xl">
+            <h1 className="welcome text-4xl">Join Ignite!</h1>
+            <h3 className="text-md">
               Create an account to generate custom designs
             </h3>
           </div>
@@ -24,8 +24,8 @@ function Register(){
           <img className="h-auto px-32 py-4" src={line} alt="Line" />
           {/* Sign up */}
           <div className="forgot px-32 py-3 text-right flex flex-col">
-            <button className="px-5 py-3 boton_naranja">
-              Sign up with DuckDuckGo
+            <button className="px-5 py-2 boton_naranja">
+              Sign up with Google
             </button>
             <h4 className="mt-4 text-center">
               Already have an account? Login{" "}

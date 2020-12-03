@@ -5,7 +5,7 @@ import { StorageImage } from "reactfire";
 function Item({ id, title, image }) {
   console.log(image);
   return (
-    <div className="itemSingle">
+    <div className="itemSingle shadow-lg ">
       <div className="item__imageSingle">
         <StorageImage style={{ width: '100%' }} storagePath={image}/>
       </div>

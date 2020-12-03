@@ -11,14 +11,14 @@ function Login (){
       <div className="fit flex w-1/2 flex-col justify-center">
         <div className="px-32 py-5 text-center">
           <h1 className="welcome text-5xl">Welcome back!</h1>
-          <h3 className="px-12 text-xl">
+          <h3 className="px-4 text-md">
             Log in to purchase some unique products
           </h3>
         </div>
         <Suspense fallback={<p>Loading...</p>}>
           <LoginForm/>
         </Suspense>
-        <div className="forgot px-32 py-5 text-right">
+        <div className="forgot px-32 py-2 text-right">
           <h4>Forgot your password?</h4>
           <h4 className="mt-5">
             Don't have an account? Create one{" "}

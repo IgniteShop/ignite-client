@@ -58,46 +58,14 @@ function Cart() {
               }
               price={"$999.99"}
             />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
           </div>
           {/* Checkout */}
-          <div className="flex h-full w-3/12 checkout__main">
-            <div className="flex flex-col checkout__content">
+          <div className="h-full w-3/12 checkout__main">
+            <div className="flex flex-col checkout__content shadow-lg">
               {/* Total & Price */}
-              <div className="flex flex-row justify-between total">
+              <div className="flex flex-row justify-between total items-center">
                   <h1 className="text-2xl">Total</h1>
-                  <h1 className="text-2xl total__price">$1999.98</h1>
+                  <h1 className="text-lg total__price">$1999.98</h1>
               </div>
               {/* Checkout Button */}
               <div className="flex justify-center checkout__button">

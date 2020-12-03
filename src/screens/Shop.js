@@ -19,14 +19,14 @@ function Shop() {
         </div>
         {/* Search Bar */}
         <div className="w-screen flex justify-center mb-1">
-          <input className="w-1/2 search" placeholder="Search"></input>
+          <input className="w-1/2 h-11 search" placeholder="Search"></input>
         </div>
       </div>
       {/* Warning Sign */}
       <div className="flex w-screen justify-center mb-1">
-        <div className="w-screen flex justify-center mt-1 mb-1 items-center">
+        <div className="w-screen flex justify-center mt-8 mb-4 items-center">
           <FontAwesomeIcon className="clock-icon" icon={faClock} />
-          <h3 className="ml-1 quick">Be quick! Only 3 days left!</h3>
+          <h3 className="ml-1 font-light  quick">Be quick! Only 3 days left!</h3>
         </div>
       </div>
       <div className="fit2 flex main w-screen background">
