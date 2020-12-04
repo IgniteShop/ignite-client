@@ -15,7 +15,9 @@ function App() {
   return (
 	<Router>
 		<div className="app__main">
-		<Header />
+		<Suspense fallback={<p>Loading...</p>}>
+			<Header />
+		</Suspense>
 		<Switch>
 			<Route path='/register' component={Register}/>
 			<Route path='/login' component={Login}/>  
