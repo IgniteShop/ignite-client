@@ -21,21 +21,6 @@ function Register(){
           <Suspense fallback={<p>Loading...</p>}>
             <SignUpForm/>
           </Suspense>
-          <img className="h-auto px-32 py-4" src={line} alt="Line" />
-          {/* Sign up */}
-          <div className="forgot px-32 py-3 text-right flex flex-col">
-            <button className="px-5 py-2 boton_naranja">
-              Sign up with Google
-            </button>
-            <h4 className="mt-4 text-center">
-              Already have an account? Login{" "}
-              <Link to={"/login"}>
-                <b>
-                  <u> here</u>
-                </b>
-              </Link>
-            </h4>
-          </div>
         </div>
         {/* Shirt Image */}
         <div className="fit flex w-1/2 items-center background">
