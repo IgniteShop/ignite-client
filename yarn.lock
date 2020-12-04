@@ -1292,10 +1292,10 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/react-fontawesome@^0.1.12":
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.12.tgz#fbdea86e8b73032895e6ded1ee1dbb1874902d1a"
-  integrity sha512-kV6HtqotM3K4YIXlTVvomuIi6QgGCvYm++ImyEx2wwgmSppZ6kbbA29ASwjAUBD63j2OFU0yoxeXpZkjrrX0qQ==
+"@fortawesome/react-fontawesome@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.13.tgz#ce9654bf4e537108014ec022f2423dbe8114fd62"
+  integrity sha512-/HrLnIft5Ks2511Pz6TxHBIctC9QalVscAC64sufQ4sJH/sXaQlG3uR9LCu6VpEwkBemgcBLrz/QPNP/ddbjDg==
   dependencies:
     prop-types "^15.7.2"
 
@@ -9771,14 +9771,14 @@ react-dev-utils@^11.0.0:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
-  integrity sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
+react-dom@0.0.0-experimental-4ead6b530:
+  version "0.0.0-experimental-4ead6b530"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-4ead6b530.tgz#6ca831f5aa7ab86f7299b9a2f7b81dffabfa4eb4"
+  integrity sha512-a03ptS8lhhEENNgne6zQMXQWX/Z6WMEBGJQY0laOC0NgJywidePYpgkiE72fUAaj/r7t9a6XsdVyqx4UsEZijg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "^0.20.1"
+    scheduler "0.0.0-experimental-4ead6b530"
 
 react-error-overlay@^6.0.8:
   version "6.0.8"
@@ -9928,13 +9928,14 @@ react-state-provider@^0.0.4:
   resolved "https://registry.yarnpkg.com/react-state-provider/-/react-state-provider-0.0.4.tgz#85be92b7a2febbc6049457e6028f6b4a8cc87e9d"
   integrity sha512-JDoIdeBtMal3oZfTr0nNhN4Y6bUzidoXXTM3XSUcKbIBO3kck/FRMDUl+nWkp+mx7dbb7LPcjJNyu2YaUcbs5g==
 
-react@^17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
+react@0.0.0-experimental-5de5b6150:
+  version "0.0.0-experimental-5de5b6150"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-5de5b6150.tgz#4e2be1c5a0f912f8c797097f9131ee98de638761"
+  integrity sha512-KYomNUM5mpPsbSL+xL/OQoFPPZfsWatdrGdUodfkcKQ1O0ibctgZX21NQRrHQ3FE5Sk4ExbK/+MXAHpwKCqvWg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 reactfire@^2.0.3:
   version "2.0.3"
@@ -10513,10 +10514,10 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@^0.20.1:
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.1.tgz#da0b907e24026b01181ecbc75efdc7f27b5a000c"
-  integrity sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
+scheduler@0.0.0-experimental-4ead6b530:
+  version "0.0.0-experimental-4ead6b530"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-4ead6b530.tgz#0dca3287308d34caed0651941f1ce7c9d64a0824"
+  integrity sha512-AzUR6EiDuY32oAnfELgVFPasfovJw4+NtRy7RIam0IUOSgNZKcazqcHzsoW1zDw3AzIBlD1VlRvl5SPJRSlTPg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

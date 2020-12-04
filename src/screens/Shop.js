@@ -1,12 +1,14 @@
-import React from "react";
+import React, {Suspense} from "react";
 import "./Shop.css";
 import searchIcon from "../img/searchIcon.png";
-import Product from "../components/Product";
 import { Link } from "react-router-dom";
+import ProductContainer from "../components/ProductContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
+
 function Shop() {
+
   return (
     <div className="fit flex flex-col mb-4">
       {/* Shop Title and Search Bar */}
@@ -17,113 +19,23 @@ function Shop() {
         </div>
         {/* Search Bar */}
         <div className="w-screen flex justify-center mb-1">
-          <input className="w-1/2 search" placeholder="Search"></input>
+          <input className="w-1/2 h-11 search" placeholder="Search"></input>
         </div>
       </div>
       {/* Warning Sign */}
       <div className="flex w-screen justify-center mb-1">
-        <div className="w-screen flex justify-center mt-1 mb-1 items-center">
+        <div className="w-screen flex justify-center mt-8 mb-4 items-center">
           <FontAwesomeIcon className="clock-icon" icon={faClock} />
-          <h3 className="ml-1 quick">Be quick! Only 3 days left!</h3>
+          <h3 className="ml-1 font-light  quick">Be quick! Only 3 days left!</h3>
         </div>
       </div>
       <div className="fit2 flex main w-screen background">
         {/* Content */}
         <div className="flex w-5/6">
           {/* Main Content */}
-          <div className="products">            
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />        
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-            <Product
-              id="1"
-              title={"Noto Space"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-            />
-          </div>
+          <Suspense fallback={<p>Loading...</p>}>
+            <ProductContainer/>
+          </Suspense>
         </div>
         {/* Preview */}
         <div className="w-1/6 background">
