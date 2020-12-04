@@ -3,19 +3,13 @@
 
 * {
     color: #5763DD;
-    /* padding: 0px;
-    margin: 0px; */
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
 }
 
 .background {
     background-color: #F5F6F8;
-    /* background-color: red; */
-}
-
-.fit {
-    height: 85vh !important;
+    margin: 0px !important;
 }
 
 .welcome {
@@ -45,6 +39,6 @@
     }
 
     .boton_naranja {
-        background-color: #DE5934 !important;
+        background-color: #3d64b9;
         cursor: pointer;
     }

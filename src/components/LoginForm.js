@@ -47,9 +47,9 @@ function LoginForm(){
                 }}/>
             </div>
             <div className="px-32 py-5 flex flex-col botones">
-              <button className="px-5 py-3 boton_verde" type="submit">Login</button>
-              <button className="px-5 py-3 boton_naranja mt-5 ">
-                Login with DuckDuckGo
+              <button className="px-5 py-2 boton_verde" type="submit">Login</button>
+              <button className="px-5 py-2 boton_naranja mt-5 ">
+                Login with Google
               </button>
             </div>
         </LocalForm>

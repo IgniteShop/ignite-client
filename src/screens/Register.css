@@ -3,19 +3,21 @@
 
 * {
     color: #5763DD;
-    /* padding: 0px;
-    margin: 0px; */
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
 }
 
 .background {
     background-color: #F5F6F8;
-    /* background-color: red; */
+    margin: 0px !important;
 }
 
 .fit {
-    height: 85vh !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
 }
 
 .welcome {
@@ -37,22 +39,30 @@
 .botones button {
     color: #F5F6F8;
     border-radius: 10px;
-    background-color: #31AB26;
     cursor: pointer;
 }
 
 .boton_naranja {
-    background-color: #DE5934;
+    background-color: #3d64b9;
     border-radius: 10px;
     cursor: pointer;
-    color: #F5F6F8;
+    color: #F5F6F8; 
+    width: 100%;
 }
 
 .checkbox {
-    transform: scale(2);
+    transform: scale(1.5);
     cursor: pointer;
 }
 
 .privacy p {
     font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.required {
+    font-size: 0.8em !important;
 }
