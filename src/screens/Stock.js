@@ -35,7 +35,7 @@ function Stock(){
         });
 
         
-        if(name_array != undefined && image_array != undefined){
+        if(name_array !== undefined && image_array !== undefined){
             for (let i = 0; i < numberImages; i++) {
                 let name = await name_array[i].text();
 
