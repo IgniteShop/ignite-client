@@ -15,30 +15,30 @@ function Shop() {
       <div className="flex w-screen flex-col justify-center">
         {/* Title */}
         <div className="w-screen flex justify-center titleBar">
-          <h1 className="text-4xl text-center">Shop</h1>
+          <h1 className="text-3xl text-center">Shop</h1>
         </div>
         {/* Search Bar */}
         <div className="w-screen flex justify-center mb-1">
-          <input className="w-1/2 h-11 search" placeholder="Search"></input>
+          <input className="w-1/2 h-11 font-normal px-3 py-2 text-gray-600 rounded-3xl border-gray-50 border-solid border-2" placeholder="Search"></input>
         </div>
       </div>
       {/* Warning Sign */}
       <div className="flex w-screen justify-center mb-1">
-        <div className="w-screen flex justify-center mt-8 mb-4 items-center">
+        <div className="w-screen flex justify-center mt-2 mb-4 items-center">
           <FontAwesomeIcon className="clock-icon" icon={faClock} />
           <h3 className="ml-1 font-light  quick">Be quick! Only 3 days left!</h3>
         </div>
       </div>
       <div className="fit2 flex main w-screen background px-12">
         {/* Content */}
-        <div className="flex w-5/6 justify-center">
+        <div className="flex w-10/12 justify-center">
           {/* Main Content */}
           <Suspense fallback={<p className="text-2xl">Loading...</p>} className="flex justify-center align-center">
             <ProductContainer/>
           </Suspense>
         </div>
         {/* Preview */}
-        <div className="w-1/6 background">
+        <div className="w-2/12 background">
           <div className="preview flex items-center">
             {/* Preview Title */}
             <div className="preview__title text-center">

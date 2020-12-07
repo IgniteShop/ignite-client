@@ -12,9 +12,8 @@ function ProductContainer(){
   images = useFirestoreDocData(images);
   
   let keys = Object.keys(images);
-  console.log(keys);
     return(
-        <div className="products">  
+        <div className="products flex justify-center flex-wrap">  
           {keys.map(key => 
             <Item 
               key={key}
