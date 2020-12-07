@@ -1,10 +1,64 @@
-import React from "react";
+import React, { Suspense ,useState , useEffect } from "react";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import SoloCart from "../img/SoloCart.svg";
 import ItemCheckout from "../components/ItemCheckout";
-
+import firebase from "firebase";
+require("firebase/firestore")
+require ('firebase/auth')
 function Cart() {
+  //Getting User ID
+  let [userFB,setUserFB] =useState("")
+  
+  let Userdata = ""
+
+  useEffect(()=>{
+    function GetUser() {
+    firebase.auth().onAuthStateChanged(function(user){
+      if(user){
+        
+         Userdata = user.uid
+         setUserFB(Userdata)
+      }
+      else{} 
+    })
+    
+  }
+  GetUser()
+
+  
+  },[])
+
+//Getting Cart Items
+  let [CartItems, setCartItems] = useState([]);
+  
+
+
+useEffect(()=>{
+  
+ 
+  var db = firebase.firestore();
+
+  let cartData = db.collection("cart")
+   let query = cartData.where("user_id","==",userFB)
+   
+   let newData = []
+    
+    function GetData() {query.onSnapshot(
+    
+  function(querySnapshot){
+    querySnapshot.forEach(function(doc){
+    newData.push(doc.data())
+    
+    })
+    setCartItems(newData)
+  })}
+    GetData()
+  
+},[userFB])
+
+
+
   return (
     <div className="fit-cart flex flex-col">
       {/* Title Bar */}
@@ -34,9 +88,33 @@ function Cart() {
         <div className="flex flex-row h-full w-screen">
           {/* Final Items */}
           <div className="flex flex-col h-full w-9/12 p-5 final__items">
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
+          
+  
+           <React.Fragment >
+          <Suspense fallback={<p>Loading...</p>}>
+          
+        
+             
+           
+            { CartItems.map((item,index)=>
+            
+            <ItemCheckout key = {item.Title}
+            id = {item.Title}
+            title={item.Title}
+            image={
+              "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            }
+            price={"$999.99"}
+            
+            
+          />        
+             )
+          }
+            </Suspense>
+            </React.Fragment>
+            {/* <ItemCheckout
+              id="145"
+              title={"Joyous Blue "}
               image={
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
@@ -57,7 +135,7 @@ function Cart() {
                 "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               }
               price={"$999.99"}
-            />
+            /> */}
           </div>
           {/* Checkout */}
           <div className="h-full w-3/12 checkout__main">
