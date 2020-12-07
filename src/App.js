@@ -10,6 +10,7 @@ import Shop from './screens/Shop.js';
 import Account from './screens/Account.js';
 import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
+import Stock from './screens/Stock.js';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 			<Route path='/account' component={Account}/>
 			<Route path='/product' component={Product}/>
 			<Route path='/cart' component={Cart}/>
+			<Route path='/generateStock' component={Stock}/>
 		</Switch>
 		</div>
 	</Router>

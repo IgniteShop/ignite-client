@@ -10,16 +10,17 @@ import { useFirestore, useFirestoreDocData, StorageImage } from "reactfire";
 function ProductContainer(){
   let images = useFirestore().collection('IA_imgs').doc('admin');
   images = useFirestoreDocData(images);
-  console.log(images['FearlessChildFamilyBathroom']['img_location']);
+  console.log(images);
   
   let keys = Object.keys(images);
+  console.log(keys);
     return(
         <div className="products">  
           {keys.map(key => 
             <Item 
-              key={images[key].img_id}
-              title={images[key].img_id}
-              image={images[key]['img_location']}/>
+              key={key}
+              title={key}
+              image={images[key]['location']}/>
             )}
         </div>
     );
