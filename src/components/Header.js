@@ -24,7 +24,7 @@ function Header () {
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                 href="#generate"
               >
-                <NavLink to={"/generate"} activeClassName={"active"}><span className="ml-2">Generate</span></NavLink>
+                <Link to={"/generate"} activeClassName={"active"}><span className="ml-2">Generate</span></Link>
               </a>
             </li>
             <li className="nav-item">
@@ -33,7 +33,7 @@ function Header () {
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                 href="#shop"
               >
-                <NavLink to={"/shop"} activeClassName={"active"}><span className="ml-2">Shop</span></NavLink>
+                <Link to={"/shop"} activeClassName={"active"}><span className="ml-2">Shop</span></Link>
               </a>
             </li>
             <li className="nav-item">

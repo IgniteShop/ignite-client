@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
-* {
-    color: #5763DD;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-}
-
 .background {
     background-color: #F5F6F8;
 }
@@ -25,20 +19,12 @@
     font-weight: 700;
 }
 
-.search {
-    margin-top: 1%;
-    padding: 5px 10px 5px 10px;
-    border-radius: 20px;
-    box-shadow: 4px 4px 3px #EAEAEA;
-    color: #737373;
-}
-
 .clock-icon path{
-    fill: red !important;
+    fill: rgb(199, 68, 68) !important;
 }
 
 .quick {
-    color: red;
+    color: rgb(199, 68, 68);
 }
 
 .products {
