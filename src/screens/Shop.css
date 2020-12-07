@@ -34,11 +34,11 @@
 }
 
 .clock-icon path{
-    fill: red !important;
+    fill: rgb(199, 68, 68) !important;
 }
 
 .quick {
-    color: red;
+    color: rgb(199, 68, 68);
 }
 
 .products {

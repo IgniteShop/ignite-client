@@ -29,11 +29,11 @@ function Shop() {
           <h3 className="ml-1 font-light  quick">Be quick! Only 3 days left!</h3>
         </div>
       </div>
-      <div className="fit2 flex main w-screen background">
+      <div className="fit2 flex main w-screen background px-12">
         {/* Content */}
-        <div className="flex w-5/6">
+        <div className="flex w-5/6 justify-center">
           {/* Main Content */}
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p className="text-2xl">Loading...</p>} className="flex justify-center align-center">
             <ProductContainer/>
           </Suspense>
         </div>
