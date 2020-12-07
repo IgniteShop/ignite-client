@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
-import { useFirebaseApp, useUser } from "reactfire";
+import { useFirebaseApp, useUser, useFirestore } from "reactfire";
+import { Link, useHistory } from "react-router-dom";
+import line from "../img/line.png";
 import 'firebase/auth';
 import 'firebase/database';
+import firebasic from "firebase";
 
-function LoginForm(){
+function SignUpForm(){
     const firebase = useFirebaseApp();
     const current_user = useUser();
+    const firestore = useFirestore();
+    const history = useHistory();
     
     const [username, setUsername] = useState(undefined);
     const [email, setEmail] = useState(undefined);
@@ -19,16 +24,51 @@ function LoginForm(){
     const validEmail = (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
     const validPassword = (values) => values.password === values.repeatPassword || !values.password || !values.repeatPassword;
 
-    const signUp = () => {  
+    const signUp = () => { 
+        firebase.auth().signOut();
+ 
         //TODO: mensaje cuando el usuario se crea, mensaje si el correo ya está ocupado
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(result => {
-            firebase.database().ref(`users/${current_user.uid}`).set({gens_remaining: 5, name: username});
+            let id = result.user.uid;
+
+            firestore.collection('users').doc(id).set({
+                gens_remaining: 5,
+                name: username
+            });
+
             current_user.updateProfile({displayName: username});
+
+            history.push('account');
         }).catch(error => {
         alert(error);
         });
-    }
+    };
+
+    const signUpWithGoogle = () => {
+        firebase.auth().signOut();
+
+        let provider = new firebasic.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+
+        firebase.auth().signInWithPopup(provider).then(result => {
+            // Get user info returned by Google's API. result.user is
+            let googleData = result.user.providerData[0];
+            let id = googleData.uid;
+
+            firestore.collection('users').doc(id).set({
+                gens_remaining: 5,
+                name: googleData.displayName
+            });
+            result.user.updateProfile({displayName: googleData.displayName});
+
+            history.push('account');
+
+        }).catch(error => {
+            alert(error);
+        });
+
+    };
 
     return(
         <LocalForm validators={{'': {validPassword}}} model="form" onSubmit={signUp}>
@@ -91,7 +131,22 @@ function LoginForm(){
             <div className="px-32 py-3 flex flex-col botones">
                 <button className="px-5 py-3 boton_verde" type="submit">Create Account</button>
             </div>
+            <img className="h-auto px-32 py-4" src={line} alt="Line" />
+            {/* Sign up */}
+            <div className="forgot px-32 py-3 text-right flex flex-col">
+                <button className="px-5 py-2 boton_naranja" onClick={signUpWithGoogle} type="button">
+                Sign up with Google
+                </button>
+                <h4 className="mt-4 text-center">
+                Already have an account? Login{" "}
+                <Link to={"/login"}>
+                    <b>
+                    <u> here</u>
+                    </b>
+                </Link>
+                </h4>
+            </div>
         </LocalForm>);
 }
 
-export default LoginForm;
+export default SignUpForm;

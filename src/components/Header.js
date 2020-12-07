@@ -2,6 +2,7 @@ import "./Header.css";
 import logo from "../img/logo.svg";
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthCheck } from "reactfire";
 
 function Header () {
   return (
@@ -46,16 +47,26 @@ function Header () {
               </a>
             </li>
             <li className="nav-item">
-              {/* BOTON SIGN UP */}
-              <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
-                <Link to={"/register"}>Sign Up</Link>
-              </button>
+              <AuthCheck fallback={<SignIn/>}>
+                <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
+                  <Link to={"/logout"}>Logout</Link>
+                </button>
+              </AuthCheck>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   )
+}
+
+/* BOTON SIGN UP */
+function SignIn(){
+  return(
+    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
+      <Link to={"/register"}>Sign Up</Link>
+    </button>
+  );
 }
 
 export default Header;
