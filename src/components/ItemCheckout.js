@@ -8,7 +8,7 @@ function ItemCheckout({ id, title, image, price }) {
   let [itemURL, setItemURL] = useState(undefined);
 
   useEffect(() => {
-    let pathReference = storage.ref(`IA_imgs/${image}`).getDownloadURL().then((url) => {
+    storage.ref(`${image}`).getDownloadURL().then((url) => {
       setItemURL(url);
     });
   }, []);
