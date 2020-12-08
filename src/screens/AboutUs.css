@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+.subtitle {
+    color: #5763DD;
+    font-weight: 600;
+}
+
+.textAboutUs {
+    font-weight: 500;
+}
+
+.github {
+    height: 100%;
+    width: 25%;
+    border-radius: 15px;
+    color: white;
+    background-color: black;
+}
+
+.twitter {
+    height: 100%;
+    width: 25%;
+    border-radius: 15px;
+    color: white;
+    background-color: #57C9ED;
+}
+
+.facebook {
+    background-color: #116DB0;
+    height: 100%;
+    width: 28%;
+    border-radius: 15px;
+    color: white;
+}
+
+.aboutUsIcon {
+    height: fit-content;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #626ddf;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6e76dd;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #5e67e4;
+}
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-track:active {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
