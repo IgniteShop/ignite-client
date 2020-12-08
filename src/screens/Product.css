@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
 
-* {
-    color: #5763DD;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-}
-
 .background {
     background-color: #F5F6F8;
 }
@@ -106,37 +100,3 @@
         color: white;
         border-radius: 10px;
     }
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #626ddf;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #6e76dd;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #5e67e4;
-}
-::-webkit-scrollbar-track {
-  background: #f5f6f8;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-track:active {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}

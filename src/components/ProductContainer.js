@@ -15,7 +15,7 @@ function ProductContainer(){
   let keys = Object.keys(images);
   console.log(images);
     return(
-        <div className="products">  
+        <div className="products flex justify-center flex-wrap">  
           {
             keys.filter(key => {
                 let currentDate = firebase.firestore.Timestamp.now().valueOf();
@@ -26,6 +26,7 @@ function ProductContainer(){
                 }
             }).map(key => <Item key={key} title={key} image={images[key]['location']}/>)
           }
+
         </div>
     );
 }

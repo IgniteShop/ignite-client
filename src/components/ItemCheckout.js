@@ -1,9 +1,11 @@
 import React from "react";
 import "./ItemCheckout.css";
 
+import 'firebase/database';
+
 function ItemCheckout({ id, title, image, price }) {
   return (
-    <div className="item ml-24 shadow-lg">
+    <div className="item ml-24 shadow-lg" key={id} >
       {/* Info */}
       <div className="flex ml-4">
         {/* Image */}
