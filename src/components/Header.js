@@ -49,7 +49,7 @@ export default function Header () {
               <div
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
               >
-                <span className="ml-2 text-indigo-600">About Us</span>
+                <Link to={"/aboutus"} activeClassName={"active"}><span className="ml-2 text-indigo-600">About Us</span></Link>
               </div>
             </li>
             <li className="nav-item">

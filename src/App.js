@@ -6,6 +6,7 @@ import Login from './screens/Login.js';
 import Register from './screens/Register.js';
 import Generate from './screens/Generate.js';
 import Shop from './screens/Shop.js';
+import AboutUs from './screens/AboutUs.js';
 import Account from './screens/Account.js';
 import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
@@ -25,6 +26,7 @@ function App() {
 					<Route path='/account' component={Account}/>
 					<Route path='/product' component={Product}/>
 					<Route path='/cart' component={Cart}/>
+					<Route path='/aboutus' component={AboutUs}/>
 					<Route path='/generateStock' component={Stock}/>
 				</Switch>
 			</div>
