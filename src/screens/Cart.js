@@ -11,7 +11,7 @@ function Cart() {
   //Getting User ID
   let [userFB,setUserFB] =useState("")
   //Getting Cart Items
-  let [CartItems, setCartItems] = useState(undefined);
+  let [CartItems, setCartItems] = useState({});
   let [total, setTotal] = useState(0);
   
   let Userdata = ""
@@ -34,19 +34,15 @@ function Cart() {
     if(userFB){
       var db = firebase.firestore();
 
-      let cartData = db.collection("cart").doc(userFB);
-      
-      cartData.get().then((cart) => {
+      let cartData = db.collection("cart").doc(userFB).onSnapshot((cart) => {
         setCartItems(cart.data()['items']);
         setTotal(cart.data()['total']);
+
       });
     }
-
   }, [userFB]);
 
-  const deleteItem = "pee";
-
-  if(CartItems == undefined || total == undefined){
+  if(CartItems == {} || total == 0){
     return (
       <div className="fit-cart flex flex-col">
         <div className="flex w-screen flex-col h-full align-center">
@@ -72,6 +68,8 @@ function Cart() {
       </div>
     );
   } else {
+    let keys = Object.keys(CartItems);
+
     return (
       <div className="fit-cart flex flex-col">
         <div className="flex flex-row h-full w-screen">
@@ -79,13 +77,13 @@ function Cart() {
           <div className="flex flex-col h-full w-9/12 p-5 final__items">
             <React.Fragment >
               {
-                CartItems.map((item)=>
+                keys.map((item)=>
                   <ItemCheckout 
-                    key = {item['name']}
-                    id = {item['name']}
-                    title={item['name']}
-                    image={`${item['location']}`}
-                    price={`$${item['price']}`}
+                    key = {CartItems[item]['name']}
+                    id = {CartItems[item]['name']}
+                    title={CartItems[item]['name']}
+                    image={`${CartItems[item]['location']}`}
+                    price={`${CartItems[item]['price']}`}
                 />)
               }
             </React.Fragment>

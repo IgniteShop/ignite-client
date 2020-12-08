@@ -38,6 +38,15 @@ function Header () {
               </a>
             </li>
             <li className="nav-item">
+              {/* SHOP */}
+              <a
+                className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
+                href="#cart"
+              >
+                <Link to={"/cart"} activeClassName={"active"}><span className="ml-2">Cart</span></Link>
+              </a>
+            </li>
+            <li className="nav-item">
               {/* ABOUT US */}
               <a
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"

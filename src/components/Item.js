@@ -28,8 +28,10 @@ function Item({ id, title, image, productType }) {
       location: image
     }
 
+    let key = `items.${title}`;
+
     cart.update({
-      items: firebase.firestore.FieldValue.arrayUnion(newItem),
+      [key]: {...newItem},
       total: firebase.firestore.FieldValue.increment(newItem.price)
     }).then(() => {
       alert(`Se agregó ${title}` );
