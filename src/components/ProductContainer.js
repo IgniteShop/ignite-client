@@ -1,11 +1,7 @@
 import React from "react";
 import "../screens/Shop.css";
-import searchIcon from "../img/searchIcon.png";
 import Item from "./Item";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { useFirestore, useFirestoreDocData, StorageImage } from "reactfire";
+import { useFirestore, useFirestoreDocData } from "reactfire";
 
 function ProductContainer(){
   let images = useFirestore().collection('IA_imgs').doc('admin');
@@ -13,7 +9,7 @@ function ProductContainer(){
   
   let keys = Object.keys(images);
     return(
-        <div className="products flex justify-center flex-wrap">  
+        <div className="w-full overflow-y-auto flex justify-center flex-wrap">  
           {keys.map(key => 
             <Item 
               key={key}

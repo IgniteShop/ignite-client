@@ -1,10 +1,9 @@
 import React from "react";
 import "./Product.css";
-import { Link } from "react-router-dom";
 
 function Product() {
   return (
-    <div className="fit flex items-center">
+    <div className="flex h-full w-full items-center pt-14 justify-center">
       {/* Content */}
       <div className="flex mainStats">
         {/* Image */}
@@ -12,7 +11,7 @@ function Product() {
           <div className="flex product__image">
             <img
               src="https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              alt="My Generated Image"
+              alt="Product"
             />
           </div>
         </div>

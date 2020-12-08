@@ -1,5 +1,4 @@
 import React from "react";
-import "./Item.css";
 import { StorageImage } from "reactfire";
 
 function Item({ id, title, image }) {
@@ -12,7 +11,7 @@ function Item({ id, title, image }) {
       <div className="px-5 py-3 flex flex-col justify-center items-center">
         <p className="text-xs text-black truncate">{title}</p>
         <div className="flex flex-row justify-around w-full mt-2">
-          <button className="text-xs bg-blue-600 px-2 py-1 text-white rounded-md w-7/12">Add to cart</button>
+          <button className="text-xs bg-indigo-600 px-2 py-1 text-white rounded-md w-7/12">Add to cart</button>
           <button className="text-xs bg-green-600 px-2 py-1 text-white rounded-md w-4/12">View</button>
         </div>
       </div>
