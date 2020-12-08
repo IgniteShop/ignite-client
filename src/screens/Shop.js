@@ -1,4 +1,4 @@
-import React, {Suspense} from "react";
+import React, { Suspense, useState } from "react";
 import "./Shop.css";
 import searchIcon from "../img/searchIcon.png";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 
 function Shop() {
+  const [ searchterm, setSearchterm ] = useState(undefined);
 
   return (
     <div className="fit flex flex-col mb-4">
@@ -19,7 +20,7 @@ function Shop() {
         </div>
         {/* Search Bar */}
         <div className="w-screen flex justify-center mb-1">
-          <input className="w-1/2 h-11 font-normal px-3 py-2 text-gray-600 rounded-3xl border-gray-50 border-solid border-2" placeholder="Search"></input>
+          <input className="w-1/2 h-11 font-normal px-3 py-2 text-gray-600 rounded-3xl border-gray-50 border-solid border-2" placeholder="Search" onChange={(event) => setSearchterm(event.target.value)}></input>
         </div>
       </div>
       {/* Warning Sign */}
@@ -33,9 +34,7 @@ function Shop() {
         {/* Content */}
         <div className="flex w-10/12 justify-center">
           {/* Main Content */}
-          <Suspense fallback={<p className="text-2xl">Loading...</p>} className="flex justify-center align-center">
-            <ProductContainer/>
-          </Suspense>
+            <ProductContainer searchTerm={searchterm}/>
         </div>
         {/* Preview */}
         <div className="w-2/12 background">
