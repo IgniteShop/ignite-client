@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LocalForm, Control, Errors } from "react-redux-form";
-import { FirebaseAppProvider, useAuth } from "reactfire";
+import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
 import { useHistory } from 'react-router-dom';
-import firebase from "firebase";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
@@ -11,11 +10,9 @@ import UserContext from '../UserContextProvider';
 
 function LoginForm(){
     const { setUser } = useContext(UserContext)
-    const history = useHistory()
-
     const auth = useAuth();
-    const firestore = useFirestore();
     const history = useHistory();
+    const firestore = useFirestore();
     const firebase = useFirebaseApp();
 
     useEffect(() => {

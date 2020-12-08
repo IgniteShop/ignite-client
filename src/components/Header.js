@@ -1,9 +1,10 @@
 import "./Header.css";
 import logo from "../img/logo.svg";
 import React from "react";
+import { AuthCheck } from 'reactfire';
 import { Link } from "react-router-dom";
 
-function Header () {
+export default function Header () {
   return (
     <nav className="flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg background mb-3 fixed w-full h-20">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -64,5 +65,3 @@ function SignIn(){
     </button>
   );
 }
-
-export default Header;

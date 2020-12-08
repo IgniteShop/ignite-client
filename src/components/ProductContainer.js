@@ -1,6 +1,7 @@
 import React from "react";
 import "../screens/Shop.css";
 import Item from "./Item";
+import firebase from "firebase";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 
 function ProductContainer(){
