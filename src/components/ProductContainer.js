@@ -21,7 +21,7 @@ function ProductContainer(props){
                 if((currentDate < imageDate) && key.toLowerCase().includes(searchTerm)){
                   return key;
                 }
-            }).map(key => <Item key={key} title={key} image={images[key]['location']}/>)
+            }).map(key => <Item key={key} title={key} image={images[key]['location']} productType={props.productType}/>)
           }
 
         </div>

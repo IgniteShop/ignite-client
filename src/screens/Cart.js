@@ -84,7 +84,7 @@ function Cart() {
                     key = {item['name']}
                     id = {item['name']}
                     title={item['name']}
-                    image={`${item['user']}/${item['name']}.jpg`}
+                    image={`${item['location']}`}
                     price={`$${item['price']}`}
                 />)
               }

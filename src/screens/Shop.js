@@ -9,6 +9,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 function Shop() {
   const [ searchterm, setSearchterm ] = useState(undefined);
+  const [ productType, setProductType ] = useState("shirt");
 
   return (
     <div className="fit flex flex-col mb-4">
@@ -34,7 +35,7 @@ function Shop() {
         {/* Content */}
         <div className="flex w-10/12 justify-center">
           {/* Main Content */}
-            <ProductContainer searchTerm={searchterm}/>
+            <ProductContainer searchTerm={searchterm} productType={productType}/>
         </div>
         {/* Preview */}
         <div className="w-2/12 background">
