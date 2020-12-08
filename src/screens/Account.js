@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Account.css";
 import ItemAccount from "../components/ItemAccount";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { Redirect } from 'react-router-dom';
+import firebase from "firebase";
+require("firebase/firestore")
+require ('firebase/auth')
 
 function Account() {
+  const [userEmail, setUserEmail] = useState("")
+  useEffect(() => {
+    const user = firebase.auth().currentUser
+    console.log("USER: ", user.email) 
+    setUserEmail(user.email)
+  }, [])
+
   return (
     <div className="fit-account flex flex-col">
       {/* Content */}
@@ -28,14 +39,22 @@ function Account() {
             {/* Email */}
             <div className="flex flex-col justify-center text-center mt-5 email">
               <h2>E-mail</h2>
-              <p>jane_doe1994@gmail.com<FontAwesomeIcon className="edit-icon ml-1" icon={faEdit} /></p>
+              <p>{ userEmail }<FontAwesomeIcon className="edit-icon ml-1" icon={faEdit} /></p>
             </div>
             {/* Buttons */}
             <div className="flex flex-col mt-16 mb-5">
               <button className="flex change__password justify-center">
                 Change Password
               </button>
-              <button className="flex signout justify-center mt-5">
+              <button className="flex signout justify-center mt-5" onClick={() => {
+                firebase.auth().signOut().then(function() {
+                  // Sign-out successful.
+                  <Redirect to="/login" />
+                }).catch(function(error) {
+                  // An error happened.
+                  alert(error)
+                });
+              }}>
                 Sign out
               </button>
             </div>
