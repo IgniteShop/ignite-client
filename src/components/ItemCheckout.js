@@ -41,7 +41,7 @@ function ItemCheckout({ id, title, image, price }) {
   });
 
   return (
-    <div className="item ml-24 shadow-lg" key={id} >
+    <div className="item ml-24 shadow-lg border-box py-4" key={id}>
       {/* Info */}
       <div className="flex ml-4">
         {/* Image */}
@@ -52,7 +52,7 @@ function ItemCheckout({ id, title, image, price }) {
         <div className="flex flex-col ml-5">
           {/* Title */}
           <div className="flex title mt-2">
-            <h1 className="text-2xl">{title}</h1>
+            <h1 className="text-2xl text-indigo-600">{title}</h1>
           </div>
           {/* Price */}
           <div className="flex price">

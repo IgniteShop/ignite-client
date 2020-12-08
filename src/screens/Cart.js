@@ -1,7 +1,5 @@
 import React, { Suspense ,useState , useEffect } from "react";
 import "./Cart.css";
-import { Link } from "react-router-dom";
-import SoloCart from "../img/SoloCart.svg";
 import ItemCheckout from "../components/ItemCheckout";
 import firebase from "firebase";
 require("firebase/firestore")
@@ -90,15 +88,15 @@ function Cart() {
           </div>
           {/* Checkout */}
           <div className="h-full w-3/12 checkout__main">
-            <div className="flex flex-col checkout__content shadow-lg">
+            <div className="flex flex-col bg-white rounded-xl shadow-lg p-4 border-box justify-center">
               {/* Total & Price */}
-              <div className="flex flex-row justify-between total items-center">
+              <div className="flex flex-row justify-around mb-2 items-center">
                   <h1 className="text-2xl">Total</h1>
                   <h1 className="text-lg total__price">{`$${total}`}</h1>
               </div>
               {/* Checkout Button */}
               <div className="flex justify-center checkout__button">
-                <button>Checkout</button>
+                <button className="w-10/12 bg-green-600 rounded-md text-white font-medium py-2 hover:bg-green-500">Checkout</button>
               </div>
             </div>
           </div>

@@ -2,14 +2,12 @@ import React from "react";
 import "../screens/Shop.css";
 import Item from "./Item";
 import { useFirestore, useFirestoreDocData } from "reactfire";
-import firebase from "firebase";
 
 function ProductContainer(props){
   let images = useFirestore().collection('IA_imgs').doc('admin');
   images = useFirestoreDocData(images);
   
   let keys = Object.keys(images);
-
   return(
         <div className="products flex justify-center flex-wrap">  
           {
