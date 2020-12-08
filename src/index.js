@@ -7,6 +7,7 @@ import './tailwind.output.css';
 import { FirebaseAppProvider } from "reactfire";
 import config from "./configuration";
 import firebase from "firebase";
+import { UserContextProvider } from './UserContextProvider';
 
 firebase.initializeApp({
 apiKey: "AIzaSyD0NnEGGu78deRRDHzEbsHGtIQLd8i5wTg",
@@ -22,7 +23,9 @@ measurementId: "G-CSHXPLGNF4"
 ReactDOM.render(
   <React.StrictMode>
       <FirebaseAppProvider firebaseConfig={config}>
-        <App />
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
       </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { LocalForm, Control, Errors } from "react-redux-form";
-import { useHistory } from "react-router-dom";
-import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
+import { FirebaseAppProvider, useAuth } from "reactfire";
+import { useHistory } from 'react-router-dom';
+import firebase from "firebase";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
 
+import UserContext from '../UserContextProvider';
+
 function LoginForm(){
+    const { setUser } = useContext(UserContext)
+    const history = useHistory()
+
     const auth = useAuth();
     const firestore = useFirestore();
     const history = useHistory();
@@ -22,11 +28,36 @@ function LoginForm(){
     const required = (value) => value && value.length;
     const validEmail = (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
 
+    const getUserData = async (uid) => {
+        const db = firebase.firestore()
+        const userRef = db.collection("users").doc(uid)
+        const doc = await userRef.get()
+        const userData = doc.data()
+        if(doc.exists) {
+            const userData = doc.data()
+            return userData
+        } else {
+            alert("Something went wrong :(")
+        }
+    }
+
     const Login = () => {
         auth.signInWithEmailAndPassword(email, password)
-        .then((result) => {console.log(result);})
+        .then((user) => {
+            // Redirect to generate
+            history.push("/generate")
+        })
         .catch((error) => {alert(error)});
 
+        auth.onAuthStateChanged(async user => {
+            if(user) {
+                console.log(user.uid);
+                const userData = await getUserData(user.uid)
+                console.log("DATA: ", userData)
+                
+                setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+            }
+        })
         history.push('account');
     };
 
@@ -52,7 +83,6 @@ function LoginForm(){
         }).catch(error => {
             alert(error);
         });
-
     };
 
     return(
