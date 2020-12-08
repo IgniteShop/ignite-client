@@ -1,5 +1,6 @@
 import React, { Suspense ,useState , useEffect } from "react";
 import "./Cart.css";
+import SoloCart from "../img/SoloCart.svg";
 import ItemCheckout from "../components/ItemCheckout";
 import firebase from "firebase";
 require("firebase/firestore")
@@ -46,7 +47,7 @@ function Cart() {
         <div className="flex w-screen flex-col h-full align-center">
           {/* Title */}
           <div className="w-screen flex justify-center titleBar">
-            <h1 className="text-4xl text-center">Cart</h1>
+            <h1 className="text-4xl text-center text-indigo-600">Cart</h1>
           </div>
           <div className="flex items-center justify-center flex-col h-full">
           {/* Image */}
@@ -69,7 +70,7 @@ function Cart() {
     let keys = Object.keys(CartItems);
 
     return (
-      <div className="fit-cart flex flex-col">
+      <div className="fit-cart flex flex-col pt-20">
         <div className="flex flex-row h-full w-screen">
           {/* Final Items */}
           <div className="flex flex-col h-full w-9/12 p-5 final__items">
@@ -88,9 +89,9 @@ function Cart() {
           </div>
           {/* Checkout */}
           <div className="h-full w-3/12 checkout__main">
-            <div className="flex flex-col bg-white rounded-xl shadow-lg p-4 border-box justify-center">
+            <div className="flex flex-col checkout__content shadow-lg">
               {/* Total & Price */}
-              <div className="flex flex-row justify-around mb-2 items-center">
+              <div className="flex flex-row justify-between total items-center">
                   <h1 className="text-2xl">Total</h1>
                   <h1 className="text-lg total__price">{`$${total}`}</h1>
               </div>
