@@ -14,21 +14,21 @@ import Stock from './screens/Stock.js';
 function App() {
   return (
 	<Router>
-		<div className="app__main">
 		<Suspense fallback={<p>Loading...</p>}>
-			<Header />
+			<div className="app__main">
+				<Header />
+				<Switch>
+					<Route path='/register' component={Register}/>
+					<Route path='/login' component={Login}/>  
+					<Route path='/generate' component={Generate}/>
+					<Route path='/shop' component={Shop}/>
+					<Route path='/account' component={Account}/>
+					<Route path='/product' component={Product}/>
+					<Route path='/cart' component={Cart}/>
+					<Route path='/generateStock' component={Stock}/>
+				</Switch>
+			</div>
 		</Suspense>
-		<Switch>
-			<Route path='/register' component={Register}/>
-			<Route path='/login' component={Login}/>  
-			<Route path='/generate' component={Generate}/>
-			<Route path='/shop' component={Shop}/>
-			<Route path='/account' component={Account}/>
-			<Route path='/product' component={Product}/>
-			<Route path='/cart' component={Cart}/>
-			<Route path='/generateStock' component={Stock}/>
-		</Switch>
-		</div>
 	</Router>
   );
 }

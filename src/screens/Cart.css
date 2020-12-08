@@ -58,3 +58,15 @@
     .total__price {
         color: #8B8D9F;
     }
+
+.checkout__button button {
+    background-color: #6FCA67;
+    color: white;
+    font-weight: 600;
+    padding: 10px 85px 10px 85px;
+    border-radius: 5px;
+}
+
+.align-center {
+    align-items: center;
+}
