@@ -17,7 +17,7 @@ function Stock(){
         let numberImages = 5;
 
         for (let i = 0; i < numberImages; i++) {
-            image_promises.push(fetch(`${url}/generate_one`));
+            image_promises.push(fetch(`${url}/preview`));
 
             names_promises.push(fetch(`${url}/name`));
         }
