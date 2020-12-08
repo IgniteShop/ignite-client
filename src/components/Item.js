@@ -9,7 +9,6 @@ function Item({ id, title, image, productType }) {
   // TODO: remplazar con contexto de usuario
   const auth = useAuth();
   const [userID, setUserID] = useState(undefined);
-  const [price, setPrice] = useState(undefined);
 
   useEffect(() => {
     setUserID(auth.currentUser.uid);
