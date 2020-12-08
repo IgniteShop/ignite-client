@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
 import { useFirebaseApp, useUser, useFirestore } from "reactfire";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import line from "../img/line.png";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
 
-function LoginForm(){
+function SignUpForm(){
     const firebase = useFirebaseApp();
     const current_user = useUser();
     const firestore = useFirestore();
+    const history = useHistory();
     
     const [username, setUsername] = useState(undefined);
     const [email, setEmail] = useState(undefined);
@@ -37,6 +38,8 @@ function LoginForm(){
             });
 
             current_user.updateProfile({displayName: username});
+
+            history.push('account');
         }).catch(error => {
         alert(error);
         });
@@ -49,8 +52,7 @@ function LoginForm(){
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
         firebase.auth().signInWithPopup(provider).then(result => {
-            console.log(result.user);
-            // Get user info returned by Google's API
+            // Get user info returned by Google's API. result.user is
             let googleData = result.user.providerData[0];
             let id = googleData.uid;
 
@@ -58,7 +60,10 @@ function LoginForm(){
                 gens_remaining: 5,
                 name: googleData.displayName
             });
-            current_user.updateProfile({displayName: googleData.displayName});
+            result.user.updateProfile({displayName: googleData.displayName});
+
+            history.push('account');
+
         }).catch(error => {
             alert(error);
         });
@@ -144,4 +149,4 @@ function LoginForm(){
         </LocalForm>);
 }
 
-export default LoginForm;
+export default SignUpForm;
