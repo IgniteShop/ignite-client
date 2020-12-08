@@ -31,15 +31,21 @@ function SignUpForm(){
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(result => {
             let id = result.user.uid;
+            let current_user = firebase.auth().currentUser;
 
-            firestore.collection('users').doc(id).set({
-                gens_remaining: 5,
-                name: username
-            });
-
-            current_user.updateProfile({displayName: username});
-
-            history.push('account');
+            if(current_user){
+                firestore.collection('users').doc(id).set({
+                    gens_remaining: 5,
+                    name: username
+                });
+    
+    
+                current_user.updateProfile({displayName: username});
+    
+                history.push('account');
+            } else {
+                alert("NO");
+            }
         }).catch(error => {
         alert(error);
         });
