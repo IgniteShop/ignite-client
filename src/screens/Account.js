@@ -4,13 +4,15 @@ import ItemAccount from "../components/ItemAccount";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import firebase from "firebase";
 require("firebase/firestore")
 require ('firebase/auth')
 
 function Account() {
+  const history = useHistory()
   const [userEmail, setUserEmail] = useState("")
+  
   useEffect(() => {
     const user = firebase.auth().currentUser
     console.log("USER: ", user.email) 
@@ -49,7 +51,7 @@ function Account() {
               <button className="flex signout justify-center mt-5" onClick={() => {
                 firebase.auth().signOut().then(function() {
                   // Sign-out successful.
-                  <Redirect to="/login" />
+                  history.push("/login")
                 }).catch(function(error) {
                   // An error happened.
                   alert(error)
