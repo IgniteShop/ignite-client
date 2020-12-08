@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ItemCheckout.css";
-
 import 'firebase/database';
+import firebase from "firebase";
 
 function ItemCheckout({ id, title, image, price }) {
+  let storage = firebase.storage();
+  let [itemURL, setItemURL] = useState(undefined);
+
+  useEffect(() => {
+    let pathReference = storage.ref(`IA_imgs/${image}`).getDownloadURL().then((url) => {
+      setItemURL(url);
+    });
+  }, []);
+
   return (
     <div className="item ml-24 shadow-lg" key={id} >
       {/* Info */}
       <div className="flex ml-4">
         {/* Image */}
         <div className="item__image shadow-md">
-          <img src={image} alt="" />
+          <img src={itemURL} alt="" />
         </div>
         {/* Title & Price */}
         <div className="flex flex-col ml-5">

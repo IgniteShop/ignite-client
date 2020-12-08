@@ -6,136 +6,89 @@ import ItemCheckout from "../components/ItemCheckout";
 import firebase from "firebase";
 require("firebase/firestore")
 require ('firebase/auth')
+
 function Cart() {
   //Getting User ID
   let [userFB,setUserFB] =useState("")
+  //Getting Cart Items
+  let [CartItems, setCartItems] = useState(undefined);
+  let [total, setTotal] = useState(0);
   
   let Userdata = ""
 
+  // TODO: Cambiar por contexto de usuario
   useEffect(()=>{
     function GetUser() {
-    firebase.auth().onAuthStateChanged(function(user){
-      if(user){
-        
-         Userdata = user.uid
-         setUserFB(Userdata)
-      }
-      else{} 
-    })
-    
-  }
-  GetUser()
-
-  
+      firebase.auth().onAuthStateChanged(function(user){
+        if(user){     
+          Userdata = user.uid
+          setUserFB(Userdata)
+        }}
+      );
+    }
+    GetUser();
   },[])
 
-//Getting Cart Items
-  let [CartItems, setCartItems] = useState([]);
-  
 
+  useEffect(()=> {
+    if(userFB){
+      var db = firebase.firestore();
 
-useEffect(()=>{
-  
- 
-  var db = firebase.firestore();
+      let cartData = db.collection("cart").doc(userFB);
+      
+      cartData.get().then((cart) => {
+        setCartItems(cart.data()['items']);
+        setTotal(cart.data()['total']);
+      });
+    }
 
-  let cartData = db.collection("cart")
-   let query = cartData.where("user_id","==",userFB)
-   
-   let newData = []
-    
-    function GetData() {query.onSnapshot(
-    
-  function(querySnapshot){
-    querySnapshot.forEach(function(doc){
-    newData.push(doc.data())
-    
-    })
-    setCartItems(newData)
-  })}
-    GetData()
-  
-},[userFB])
+  }, [userFB]);
 
+  const deleteItem = "pee";
 
-
-  return (
-    <div className="fit-cart flex flex-col">
-      {/* Title Bar */}
-      <div className="flex w-screen flex-col h-full">
-        {/* Title */}
-        <div className="w-screen flex justify-center titleBar">
-          <h1 className="text-4xl text-center">Cart</h1>
+  if(CartItems == undefined || total == undefined){
+    return (
+      <div className="fit-cart flex flex-col">
+        <div className="flex w-screen flex-col h-full align-center">
+          {/* Title */}
+          <div className="w-screen flex justify-center titleBar">
+            <h1 className="text-4xl text-center">Cart</h1>
+          </div>
+          <div className="flex items-center justify-center flex-col h-full">
+          {/* Image */}
+            <div className="flex justify-center cart__image">
+              <img className="flex rounded-t-xl" src={SoloCart} alt="Solo Cart" />
+            </div>
+          </div>
+          {/* Description */}
+          <div className="flex flex-col text-center description mt-5">
+            <h1 className="text-2xl">There are no items in your cart</h1>
+            <h3>
+            You can buy products at the shop or generate your own design to
+            create a new product
+            </h3>
+          </div>
         </div>
-        {/* --------- NO ITEMS CART --------- */}
-        {/* <div className="flex items-center justify-center flex-col h-full"> */}
-        {/* Image */}
-        {/* <div className="flex justify-center cart__image"> */}
-        {/* <img className="flex" src={SoloCart} alt="Solo Cart" /> */}
-        {/* </div> */}
-        {/* Description */}
-        {/* <div className="flex flex-col text-center description mt-5"> */}
-        {/* <h1 className="text-2xl">There are no items in your cart</h1> */}
-        {/* <h3> */}
-        {/* You can buy products at the shop or generate your own design to */}
-        {/* create a new product */}
-        {/* </h3> */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* --------- END NO ITEMS CART --------- */}
-
-        {/* --------- ITEMS CART --------- */}
+      </div>
+    );
+  } else {
+    return (
+      <div className="fit-cart flex flex-col">
         <div className="flex flex-row h-full w-screen">
           {/* Final Items */}
           <div className="flex flex-col h-full w-9/12 p-5 final__items">
-          
-  
-           <React.Fragment >
-          <Suspense fallback={<p>Loading...</p>}>
-          
-        
-             
-           
-            { CartItems.map((item,index)=>
-            
-            <ItemCheckout key = {item.Title}
-            id = {item.Title}
-            title={item.Title}
-            image={
-              "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            }
-            price={"$999.99"}
-            
-            
-          />        
-             )
-          }
-            </Suspense>
+            <React.Fragment >
+              {
+                CartItems.map((item)=>
+                  <ItemCheckout 
+                    key = {item['name']}
+                    id = {item['name']}
+                    title={item['name']}
+                    image={`${item['user']}/${item['name']}.jpg`}
+                    price={`$${item['price']}`}
+                />)
+              }
             </React.Fragment>
-            {/* <ItemCheckout
-              id="145"
-              title={"Joyous Blue "}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            />
-            <ItemCheckout
-              id="1"
-              title={"Joyous Blue Cocoa"}
-              image={
-                "https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              }
-              price={"$999.99"}
-            /> */}
           </div>
           {/* Checkout */}
           <div className="h-full w-3/12 checkout__main">
@@ -143,7 +96,7 @@ useEffect(()=>{
               {/* Total & Price */}
               <div className="flex flex-row justify-between total items-center">
                   <h1 className="text-2xl">Total</h1>
-                  <h1 className="text-lg total__price">$1999.98</h1>
+                  <h1 className="text-lg total__price">{`$${total}`}</h1>
               </div>
               {/* Checkout Button */}
               <div className="flex justify-center checkout__button">
@@ -152,10 +105,9 @@ useEffect(()=>{
             </div>
           </div>
         </div>
-        {/* --------- END NO ITEMS CART --------- */}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Cart;

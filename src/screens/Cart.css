@@ -70,3 +70,7 @@
     padding: 10px 85px 10px 85px;
     border-radius: 5px;
 }
+
+.align-center {
+    align-items: center;
+}
