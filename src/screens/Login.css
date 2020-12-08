@@ -1,38 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
-.background {
-    background-color: #F5F6F8;
-    margin: 0px !important;
-}
-
 .welcome {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
 }
-
-.login input {
-    color: #737373;
-    box-shadow: 2px 2px 2px #EAEAEA;
-    border-radius: 10px;
-    border: #cccccc;
-}
-
-.forgot {
-    font-weight: 400;
-}
-
-.botones button {
-    color: #F5F6F8;
-    border-radius: 10px;
-    cursor: pointer;
-}
-    .boton_verde {
-        background-color: #31AB26;
-        cursor: pointer;
-    }
-
-    .boton_naranja {
-        background-color: #3d64b9;
-        cursor: pointer;
-    }

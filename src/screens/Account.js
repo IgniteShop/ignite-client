@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Account.css";
 import ItemAccount from "../components/ItemAccount";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from 'react-router-dom';
@@ -18,23 +17,24 @@ function Account() {
   }, [])
 
   return (
-    <div className="fit-account flex flex-col">
+    <div className="fit-account flex flex-col pt-20">
       {/* Content */}
       <div className="flex w-screen flex-row h-full">
         {/* Sidebar */}
-        <div className="flex w-1/3 flex-col p-10 justify-center">
+        <div className="flex w-1/3 flex-col p-10 justify-center text-indigo-600">
           {/* Main Sidebar */}
-          <div className="flex justify-center flex-col items-center sidebar-account">
+          <div className="flex justify-center flex-col items-center sidebar-account px-4 py-10 border-box">
             {/* Profile Image */}
-            <div className="flex profile__image justify-center mt-5">
+            <div className="flex profile__image justify-center mt-5 rounded-full">
               <img
-                className="rounded-full"
-                src="https://i.pinimg.com/564x/d8/82/59/d88259a42fcc6ee481c879e05b5ff465.jpg"
+                className="w-48 h-48 md:w-32 md:h-32 xl:w-48 xl:h-48 object-cover overflow-hidden"
+                src="https://pixy.org/src/7/thumbs350/76776.jpg"
+                alt="Profile"
               />
             </div>
             {/* Name */}
             <div className="flex mt-5 name">
-              <h1 className="text-2xl">Jane Doe</h1>
+              <h1 className="text-2xl text-center">Jane Doe</h1>
             </div>
             {/* Email */}
             <div className="flex flex-col justify-center text-center mt-5 email">
@@ -43,10 +43,10 @@ function Account() {
             </div>
             {/* Buttons */}
             <div className="flex flex-col mt-16 mb-5">
-              <button className="flex change__password justify-center">
+              <button className="flex bg-indigo-600 text-white rounded-md font-medium py-2 px-5 justify-center">
                 Change Password
               </button>
-              <button className="flex signout justify-center mt-5" onClick={() => {
+              <button className="flex bg-red-600 text-white rounded-md font-medium py-2 px-5 justify-center mt-3" onClick={() => {
                 firebase.auth().signOut().then(function() {
                   // Sign-out successful.
                   <Redirect to="/login" />

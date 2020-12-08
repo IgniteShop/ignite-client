@@ -1,12 +1,11 @@
 import "./Header.css";
 import logo from "../img/logo.svg";
-import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { AuthCheck } from "reactfire";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Header () {
   return (
-    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg background mb-3">
+    <nav className="flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg background mb-3 fixed w-full h-20">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           {/* Logo y nombre de app */}
@@ -21,30 +20,27 @@ function Header () {
           <ul className="flex flex-col lg:flex-row list-none lg:ml-auto items-center">
             <li className="nav-item">
               {/* GENERATE */}
-              <a
+              <div
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
-                href="#generate"
               >
-                <Link to={"/generate"} activeClassName={"active"}><span className="ml-2">Generate</span></Link>
-              </a>
+                <Link to={"/generate"} activeClassName={"active"}><span className="ml-2 text-indigo-600">Generate</span></Link>
+              </div>
             </li>
             <li className="nav-item">
               {/* SHOP */}
-              <a
+              <div
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
-                href="#shop"
               >
-                <Link to={"/shop"} activeClassName={"active"}><span className="ml-2">Shop</span></Link>
-              </a>
+                <Link to={"/shop"} activeClassName={"active"}><span className="ml-2 text-indigo-600">Shop</span></Link>
+              </div>
             </li>
             <li className="nav-item">
               {/* ABOUT US */}
-              <a
+              <div
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
-                href="#aboutus"
               >
-                <span className="ml-2">About Us</span>
-              </a>
+                <span className="ml-2 text-indigo-600">About Us</span>
+              </div>
             </li>
             <li className="nav-item">
               <AuthCheck fallback={<SignIn/>}>

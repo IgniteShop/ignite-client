@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-.background {
-    background-color: #F5F6F8;
-}
-
 .fit-account {
     height: 91vh !important;
     margin: 0px !important;
@@ -27,16 +23,9 @@
     margin-left: 22%;
 }
 
-.profile__image {
-    width: 70%;
-}
-
 .profile__image img {
-    width: 170px;
-    height: 170px;
     border-radius: 50%;
     overflow: hidden;
-    object-fit: cover;
 }
 
 .name h1 {
@@ -51,22 +40,6 @@
 
 .edit-icon path {
     fill: #598FE7 !important;
-}
-
-.change__password {
-    background-color: #5763DD;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 25px 10px 25px;
-    font-weight: 600;
-}
-
-.signout {
-    background-color: #DD5757;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 25px 10px 25px;
-    font-weight: 600;
 }
 
 .image-container {

@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-.background {
-    background-color: #F5F6F8;
-}
-
 .fit-cart {
     height: 82vh !important;
     margin: 0px !important;
@@ -62,11 +58,3 @@
     .total__price {
         color: #8B8D9F;
     }
-
-.checkout__button button {
-    background-color: #6FCA67;
-    color: white;
-    font-weight: 600;
-    padding: 10px 85px 10px 85px;
-    border-radius: 5px;
-}

@@ -1,10 +1,9 @@
 import "./App.css";
 import Header from "./components/Header";
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './screens/Login.js';
 import Register from './screens/Register.js';
-import { AuthCheck } from "reactfire";
 import Generate from './screens/Generate.js';
 import Shop from './screens/Shop.js';
 import Account from './screens/Account.js';
