@@ -4,16 +4,13 @@ import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
 import { useHistory } from 'react-router-dom';
 import 'firebase/auth';
 import 'firebase/database';
-import firebasic from "firebase";
+import firebase from "firebase";
 
 import UserContext from '../UserContextProvider';
 
 function LoginForm(){
     const { setUser } = useContext(UserContext)
-    const auth = useAuth();
     const history = useHistory();
-    const firestore = useFirestore();
-    const firebase = useFirebaseApp();
 
     useEffect(() => {
         firebase.auth().signOut();
@@ -29,7 +26,6 @@ function LoginForm(){
         const db = firebase.firestore()
         const userRef = db.collection("users").doc(uid)
         const doc = await userRef.get()
-        const userData = doc.data()
         if(doc.exists) {
             const userData = doc.data()
             return userData
@@ -39,14 +35,13 @@ function LoginForm(){
     }
 
     const Login = () => {
-        auth.signInWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
-            // Redirect to generate
-            history.push("/generate")
+            history.push("account")
         })
         .catch((error) => {alert(error)});
 
-        auth.onAuthStateChanged(async user => {
+        firebase.auth().onAuthStateChanged(async user => {
             if(user) {
                 console.log(user.uid);
                 const userData = await getUserData(user.uid)
@@ -61,7 +56,7 @@ function LoginForm(){
     const loginWithGoogle = () => {
         firebase.auth().signOut();
 
-        let provider = new firebasic.auth.GoogleAuthProvider();
+        let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
         firebase.auth().signInWithPopup(provider).then(result => {
@@ -69,7 +64,7 @@ function LoginForm(){
             let googleData = result.user.providerData[0];
             let id = googleData.uid;
 
-            firestore.collection('users').doc(id).set({
+            firebase.firestore().collection('users').doc(id).set({
                 gens_remaining: 5,
                 name: googleData.displayName
             });
@@ -79,6 +74,16 @@ function LoginForm(){
 
         }).catch(error => {
             alert(error);
+        });
+
+        firebase.auth().onAuthStateChanged(async user => {
+            if(user) {
+                console.log(user.uid);
+                const userData = await getUserData(user.uid)
+                console.log("DATA: ", userData)
+                
+                setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+            }
         });
     };
 

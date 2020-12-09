@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
 import { useFirebaseApp, useUser, useFirestore } from "reactfire";
 import { Link, useHistory } from "react-router-dom";
@@ -7,11 +7,13 @@ import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
 
+import UserContext from '../UserContextProvider';
+
 function SignUpForm(){
     const firebase = useFirebaseApp();
-    const current_user = useUser();
     const firestore = useFirestore();
     const history = useHistory();
+    const { setUser } = useContext(UserContext);
     
     const [username, setUsername] = useState(undefined);
     const [email, setEmail] = useState(undefined);
@@ -55,6 +57,18 @@ function SignUpForm(){
         });
     };
 
+    const getUserData = async (uid) => {
+        const db = firebase.firestore()
+        const userRef = db.collection("users").doc(uid)
+        const doc = await userRef.get()
+        if(doc.exists) {
+            const userData = doc.data()
+            return userData
+        } else {
+            alert("Something went wrong :(")
+        }
+    }
+
     const signUpWithGoogle = () => {
         firebase.auth().signOut();
 
@@ -78,6 +92,16 @@ function SignUpForm(){
             result.user.updateProfile({displayName: googleData.displayName});
 
             history.push('account');
+
+            firebase.auth().onAuthStateChanged(async user => {
+                if(user) {
+                    console.log(user.uid);
+                    const userData = await getUserData(user.uid)
+                    console.log("DATA: ", userData)
+                    
+                    setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+                }
+            });
 
         }).catch(error => {
             alert(error);
