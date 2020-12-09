@@ -12,7 +12,6 @@ function Shop() {
   const [ searchterm, setSearchterm ] = useState(undefined);
   const [ productType, setProductType ] = useState("Canvas");
 
-
   return (
     <div className="flex flex-col mb-4 pt-20 h-full justify-center items-center">
     <Suspense fallback={<p className="text-xl text-indigo-600">Loading...</p>} className="flex justify-center align-center">

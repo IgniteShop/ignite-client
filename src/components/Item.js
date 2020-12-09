@@ -11,6 +11,7 @@ function Item({ id, title, image, productType }) {
 
   useEffect(() => {
     setUserID(auth.currentUser.uid);
+    
   }, []);
 
   const addToCart = async () => {
