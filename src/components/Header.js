@@ -1,10 +1,37 @@
 import "./Header.css";
 import logo from "../img/logo.svg";
-import React from "react";
+import React, { useContext } from "react";
 import { AuthCheck } from 'reactfire';
 import { Link } from "react-router-dom";
+import firebase from "firebase";
+
+import UserContext from '../UserContextProvider';
 
 export default function Header () {
+  const { setUser } = useContext(UserContext);
+
+  /* BOTON SIGN UP */
+function SignIn(){
+  return(
+    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
+      <Link to={"/register"}>Sign Up</Link>
+    </button>
+  );
+}
+
+function LogOut(){
+  const firebaseLogout = async () => {
+    await firebase.auth().signOut().then(() => {
+      setUser({});
+    });
+  }
+
+  return(
+    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3" onClick={firebaseLogout}
+    >Logout</button>
+  );
+}
+
   return (
     <nav className="flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg background mb-3 fixed w-full h-20">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
@@ -64,20 +91,3 @@ export default function Header () {
   )
 }
 
-/* BOTON SIGN UP */
-function SignIn(){
-  return(
-    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
-      <Link to={"/register"}>Sign Up</Link>
-    </button>
-  );
-}
-
-function LogOut(){
-  return(
-    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3" onClick={async () => {
-      await firebase.auth().signOut();
-    }}>Logout
-    </button>
-  );
-}
