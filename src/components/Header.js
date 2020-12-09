@@ -54,9 +54,7 @@ export default function Header () {
             </li>
             <li className="nav-item">
               <AuthCheck fallback={<SignIn/>}>
-                <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
-                  <Link to={"/logout"}>Logout</Link>
-                </button>
+                <LogOut/>
               </AuthCheck>
             </li>
           </ul>
@@ -71,6 +69,15 @@ function SignIn(){
   return(
     <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3">
       <Link to={"/register"}>Sign Up</Link>
+    </button>
+  );
+}
+
+function LogOut(){
+  return(
+    <button className="px-5 py-1 boton hover:bg-indigo-700 text-white font-bold  ml-3" onClick={async () => {
+      await firebase.auth().signOut();
+    }}>Logout
     </button>
   );
 }

@@ -9,7 +9,6 @@ import firebasic from "firebase";
 
 function SignUpForm(){
     const firebase = useFirebaseApp();
-    const current_user = useUser();
     const firestore = useFirestore();
     const history = useHistory();
     
