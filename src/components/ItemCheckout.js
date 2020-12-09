@@ -41,7 +41,7 @@ function ItemCheckout({ id, title, image, price }) {
   });
 
   return (
-    <div className="item ml-24 shadow-lg border-box py-4" key={id}>
+    <div className="item ml-24 shadow-lg" key={id}>
       {/* Info */}
       <div className="flex ml-4">
         {/* Image */}
@@ -62,8 +62,8 @@ function ItemCheckout({ id, title, image, price }) {
       </div>
       {/* Buttons */}
       <div className="flex flex-col m-10 botones">
-        <button className="edit w-32 h-8">Edit</button>
-        <button className="delete w-32 h-8 mt-2" onClick={deleteItem}>Delete</button>
+        <button className="bg-indigo-600 rounded-md hover:bg-indigo-500 text-white font-medium w-32 h-8">Edit</button>
+        <button className="bg-red-600 rounded-md hover:bg-red-500 text-white font-medium w-32 h-8 mt-2" onClick={deleteItem}>Delete</button>
       </div>
     </div>
   );

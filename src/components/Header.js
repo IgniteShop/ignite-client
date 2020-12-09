@@ -41,7 +41,7 @@ export default function Header () {
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
                 href="#cart"
               >
-                <Link to={"/cart"} activeClassName={"active"}><span className="ml-2">Cart</span></Link>
+                <Link to={"/cart"} activeClassName={"active"}><span className="ml-2 text-indigo-600">Cart</span></Link>
               </a>
             </li>
             <li className="nav-item">
@@ -49,7 +49,7 @@ export default function Header () {
               <div
                 className="px-3 py-2 flex items-center text-sm font-bold leading-snug text-white hover:opacity-75"
               >
-                <span className="ml-2 text-indigo-600">About Us</span>
+                <Link to={"/aboutus"} activeClassName={"active"}><span className="ml-2 text-indigo-600">About Us</span></Link>
               </div>
             </li>
             <li className="nav-item">
