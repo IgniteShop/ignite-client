@@ -17,8 +17,7 @@ function Item({ id, title, image, productType }) {
   const addToCart = async () => {
     let priceData = db.collection("variables").doc("prices");
     let price = await priceData.get().then((prices) => {
-      
-      return prices.data()[productType];
+      return prices.data()[productType.toLowerCase()];
     });
 
     let cart = db.collection('cart').doc(userID);

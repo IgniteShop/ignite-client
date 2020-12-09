@@ -58,6 +58,12 @@ function Stock(){
                 }).then(() => {
                     console.log("Image added to database");
                 });
+
+                db.collection('variables').doc('image_expiration').update({
+                    current: firebase.firestore.Timestamp.now()
+                }).then(() => {
+                    console.log("Image added to database");
+                });
             }
         } else {
             alert("Error de servidor");
