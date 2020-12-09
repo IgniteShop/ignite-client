@@ -11,6 +11,7 @@ import Account from './screens/Account.js';
 import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
 import Stock from './screens/Stock.js';
+import Home from './screens/Home.js';
 
 function App() {
   return (
@@ -19,15 +20,16 @@ function App() {
 			<div className="app__main">
 				<Header />
 				<Switch>
-					<Route path='/register' component={Register}/>
-					<Route path='/login' component={Login}/>  
-					<Route path='/generate' component={Generate}/>
-					<Route path='/shop' component={Shop}/>
-					<Route path='/account' component={Account}/>
-					<Route path='/product' component={Product}/>
-					<Route path='/cart' component={Cart}/>
-					<Route path='/aboutus' component={AboutUs}/>
-					<Route path='/generateStock' component={Stock}/>
+					<Route exact path='/' component={Home}/>
+					<Route exact path='/register' component={Register}/>
+					<Route exact path='/login' component={Login}/>  
+					<Route exact path='/generate' component={Generate}/>
+					<Route exact path='/shop' component={Shop}/>
+					<Route exact path='/account' component={Account}/>
+					<Route exact path='/product' component={Product}/>
+					<Route exact path='/cart' component={Cart}/>
+					<Route exact path='/aboutus' component={AboutUs}/>
+					<Route exact ath='/generateStock' component={Stock}/>
 				</Switch>
 			</div>
 		</Suspense>
