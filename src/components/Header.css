@@ -1,15 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 
-* {
-    color: #5763DD;
-    font-family: 'Quicksand', sans-serif;
-    outline: none;
-}
-
-.background {
-    background-color: #F5F6F8;
-}
-
 .ignite {
     font-weight: 700;
 }

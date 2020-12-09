@@ -1,14 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-* {
-    color: #5763DD;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-}
-
 .background {
     background-color: #F5F6F8;
+    margin: 0px !important;
 }
 
 .fit__generate {
@@ -78,71 +73,4 @@
     font-weight: 400;
     font-size: 1em;
     border-radius: 5px;
-}
-
-.buttons {
-    color: white;
-    font-weight: 600;
-}
-    .generate__image {
-        background-color: #5763DD;
-        padding: 10px 40px 10px 40px;
-        border-radius: 10px;
-    }
-
-    .generate__image:hover {
-        background-color: #4b55bd;
-    }
-
-    .save__image {
-        background-color: #6FCA67;
-        padding: 10px 40px 10px 40px;
-        border-radius: 10px;
-    }
-
-    .save__image:hover {
-        background-color: #5da357;
-    }
-
-.images__left p {
-    font-weight: 500;
-    color: black;
-}
-
-.images__left b {
-    color: black;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #626ddf;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #6e76dd;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #5e67e4;
-}
-::-webkit-scrollbar-track {
-  background: #f5f6f8;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-track:active {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
 }

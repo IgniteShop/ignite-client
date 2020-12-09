@@ -1,47 +1,48 @@
-import React, {Suspense} from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import "./Shop.css";
-import searchIcon from "../img/searchIcon.png";
-import { Link } from "react-router-dom";
 import ProductContainer from "../components/ProductContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import firebase from "firebase";
+import 'firebase/database';
+import TimeLeft from "../components/TimeLeft";
 
 
 function Shop() {
+  const [ searchterm, setSearchterm ] = useState(undefined);
+  const [ productType, setProductType ] = useState("Canvas");
 
   return (
-    <div className="fit flex flex-col mb-4">
+    <div className="flex flex-col mb-4 pt-20 h-full justify-center items-center">
+    <Suspense fallback={<p className="text-xl text-indigo-600">Loading...</p>} className="flex justify-center align-center">
       {/* Shop Title and Search Bar */}
-      <div className="flex w-screen flex-col justify-center">
+      <div className="block flex w-screen flex-col justify-center">
         {/* Title */}
         <div className="w-screen flex justify-center titleBar">
-          <h1 className="text-4xl text-center">Shop</h1>
+          <h1 className="text-3xl text-center text-indigo-600">Shop</h1>
         </div>
         {/* Search Bar */}
         <div className="w-screen flex justify-center mb-1">
-          <input className="w-1/2 h-11 search" placeholder="Search"></input>
+        <input className="w-1/2 h-11 font-normal px-3 py-2 text-gray-600 rounded-3xl border-gray-50 border-solid border-2" placeholder="Search" onChange={(event) => setSearchterm(event.target.value)}></input>
         </div>
       </div>
       {/* Warning Sign */}
-      <div className="flex w-screen justify-center mb-1">
-        <div className="w-screen flex justify-center mt-8 mb-4 items-center">
-          <FontAwesomeIcon className="clock-icon" icon={faClock} />
-          <h3 className="ml-1 font-light  quick">Be quick! Only 3 days left!</h3>
-        </div>
+      <div className="flex w-screen justify-center">
+        <TimeLeft/>
       </div>
-      <div className="fit2 flex main w-screen background">
+      <div className="h-full overflow-x-auto flex main w-screen bg-gray-50 px-12 justify-around">
+      
         {/* Content */}
-        <div className="flex w-5/6">
+        <div className="flex w-9/12 justify-around py-4">
           {/* Main Content */}
-          <Suspense fallback={<p>Loading...</p>}>
-            <ProductContainer/>
-          </Suspense>
+          <ProductContainer searchTerm={searchterm} productType={productType}/>
         </div>
+
         {/* Preview */}
-        <div className="w-1/6 background">
-          <div className="preview flex items-center">
+        <div className="w-2/12 background">
+          <div className="bg-white flex flex-col p-6 rounded-2xl items-center">
             {/* Preview Title */}
-            <div className="preview__title text-center">
+            <div className="mb-4 text-center">
               <h1>Preview</h1>
             </div>
             {/* Preview Dropdown */}
@@ -49,8 +50,8 @@ function Shop() {
               <div className="dropdown inline-block relative w-full">
                 <button className="text-gray-700 py-2 px-2 rounded inline-flex items-center w-full">
                   <div className="flex select w-full">
-                    <div className="flex w-full items-center">
-                      <span className="w-full text-left">Select</span>      
+                    <div className="flex w-full items-center text-indigo-600">
+                      <span className="w-full text-center">{productType}</span>      
                       <svg
                         className="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
@@ -61,21 +62,24 @@ function Shop() {
                     </div>
                   </div>
                 </button>
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 w-full">
-                  <li className="option">
-                    <li className="rounded-t hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 w-full text-indigo-600 text-center">
+                  <li>
+                    <span className="rounded-t-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Canvas")}}>
                       Canvas
-                    </li>
+                    </span>
                   </li>
-                  <li className="option">
-                    <li className="hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                  <li>
+                    <span className="hover:bg-gray-300 cursor-pointer py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Mug")}}>
                       Mug
-                    </li>
+                    </span>
                   </li>
-                  <li className="option">
-                    <li className="rounded-b hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                  <li>
+                    <span className="rounded-b-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Shirt")}}>
                       Shirt
-                    </li>
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -83,7 +87,8 @@ function Shop() {
           </div>
         </div>
       </div>
-    </div>
+    </Suspense>
+  </div>
   );
 }
 

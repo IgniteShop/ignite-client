@@ -1,17 +1,54 @@
-import React from "react";
-import "./Item.css";
-import { StorageImage } from "reactfire";
+import React, { useEffect, useState } from "react";
+import { StorageImage, useAuth } from "reactfire";
+import "firebase/firestore"
+import firebase from "firebase";
 
-function Item({ id, title, image }) {
-  console.log(image);
+function Item({ id, title, image, productType }) {
+  const db = firebase.firestore();
+  // TODO: remplazar con contexto de usuario
+  const auth = useAuth();
+  const [userID, setUserID] = useState(undefined);
+
+  useEffect(() => {
+    setUserID(auth.currentUser.uid);
+    
+  }, []);
+
+  const addToCart = async () => {
+    let priceData = db.collection("variables").doc("prices");
+    let price = await priceData.get().then((prices) => {
+      return prices.data()[productType.toLowerCase()];
+    });
+
+    let cart = db.collection('cart').doc(userID);
+    let newItem = {
+      name: title,
+      price: price,
+      type: productType,
+      location: image
+    }
+
+    let key = `items.${title}`;
+
+    cart.update({
+      [key]: {...newItem},
+      total: firebase.firestore.FieldValue.increment(newItem.price)
+    }).then(() => {
+      alert(`Se agregó ${title}` );
+    });
+  }
+
   return (
-    <div className="itemSingle shadow-lg ">
-      <div className="item__imageSingle">
-        <StorageImage style={{ width: '100%' }} storagePath={image}/>
+    <div className="shadow-lg w-56 h-auto flex bg-white flex-col m-3 rounded-xl">
+      <div className="w-56 h-56 rounded-t-xl">
+        <StorageImage className="rounded-t-xl" storagePath={image}/>
       </div>
-      <div className="item__title flex">
-        <p>{title}</p>
-        <button>Add to cart</button>
+      <div className="px-5 py-3 flex flex-col justify-center items-center">
+        <p className="text-xs text-black truncate">{title}</p>
+        <div className="flex flex-row justify-around w-full mt-2">
+          <button className="text-xs bg-indigo-600 px-2 py-1 text-white rounded-md w-7/12" onClick={addToCart}>Add to cart</button>
+          <button className="text-xs bg-green-600 px-2 py-1 text-white rounded-md w-4/12">View</button>
+        </div>
       </div>
     </div>
   );

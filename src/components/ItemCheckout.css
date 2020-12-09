@@ -1,22 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-* {
-  color: #5763dd;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-}
-
-.background {
-  /* background-color: #F5F6F8; */
-  margin: 0px !important;
-}
-
-.fit {
-  height: 89vh !important;
-  margin: 0px !important;
-}
-
 .titleBar h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
@@ -47,55 +31,4 @@
 .price h3 {
   color: #7f8089;
   font-weight: 600;
-}
-
-.edit {
-  background-color: #598fe7 !important;
-}
-
-.delete {
-  background-color: #ff4a4a !important;
-}
-
-.botones button {
-  text-align: center;
-  font-weight: 200;
-  font-size: 15px;
-  padding: 5px 20px 5px 20px;
-  color: white;
-  /* border-radius: 20px; */
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #626ddf;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #6e76dd;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #5e67e4;
-}
-::-webkit-scrollbar-track {
-  background: #f5f6f8;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-track:active {
-  background: #f5f6f8;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
 }

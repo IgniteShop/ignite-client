@@ -31,15 +31,25 @@ function SignUpForm(){
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(result => {
             let id = result.user.uid;
+            let current_user = firebase.auth().currentUser;
 
-            firestore.collection('users').doc(id).set({
-                gens_remaining: 5,
-                name: username
-            });
-
-            current_user.updateProfile({displayName: username});
-
-            history.push('account');
+            if(current_user){
+                firestore.collection('users').doc(id).set({
+                    gens_remaining: 5,
+                    name: username
+                });
+                
+                firestore.collection('cart').doc(id).set({
+                    items:{},
+                    total:0
+                })
+    
+                current_user.updateProfile({displayName: username});
+    
+                history.push('account');
+            } else {
+                alert("NO");
+            }
         }).catch(error => {
         alert(error);
         });
@@ -60,6 +70,11 @@ function SignUpForm(){
                 gens_remaining: 5,
                 name: googleData.displayName
             });
+
+            firestore.collection('cart').doc(id).set({
+                items:{},
+                total:0
+            })
             result.user.updateProfile({displayName: googleData.displayName});
 
             history.push('account');
@@ -72,72 +87,72 @@ function SignUpForm(){
 
     return(
         <LocalForm validators={{'': {validPassword}}} model="form" onSubmit={signUp}>
-            <div className="login px-32 py-2 flex flex-col">
+            <div className="login px-32 py-2 flex flex-col text-red-600">
                 <Control.text 
-                className="px-5 py-2" 
+                className="px-5 py-2 font-medium rounded-2xl text-gray-700 border-2 border-gray-300 border-box" 
                 placeholder="Name" 
                 validators={{required}}
                 model = ".username"
                 onChange={event => setUsername(event.target.value)}/>
                 <Errors
-                className="required" show="touched" model=".username" messages={{
+                className="flex justify-end text-sm -mb-2" show="touched" model=".username" messages={{
                 required: "This field is required"
                 }}/>
                 <Control.text 
-                className="px-5 py-2 mt-5" 
+                className="px-5 py-2 font-medium rounded-2xl text-gray-700 border-2 border-gray-300 border-box mt-5" 
                 placeholder="Email" 
                 validators={{required, validEmail}}
                 model=".email"
                 onChange={event => setEmail(event.target.value)}/>
                 <Errors
-                className="required" show="touched" model=".email" messages={{
+                className="flex justify-end text-sm -mb-2" show="touched" model=".email" messages={{
                 validEmail: "Please enter a valid email"
                 }}/>
                 <Control.text 
                 type="password"
-                className="px-5 py-2 mt-5" 
+                className="px-5 py-2 font-medium rounded-2xl text-gray-700 border-2 border-gray-300 border-box mt-5" 
                 placeholder="Password" 
                 validators={{required, minLength: minLength(6)}}
                 model=".password"
                 onChange={event => setPassword(event.target.value)}/>
                 <Errors
-                className="required" show="touched" model=".password" messages={{
+                className="flex justify-end text-sm -mb-2" show="touched" model=".password" messages={{
                 required: "This field is required",
                 minLength: "Password must be at least 6 characters"
                 }}/>
                 <Control.text
                 type="password"
-                className="px-5 py-2 mt-5"
+                className="px-5 py-2 font-medium rounded-2xl text-gray-700 border-2 border-gray-300 border-box mt-5"
                 placeholder="Confirm Password"
                 model=".repeatPassword"
                 onChange={event => setPasswordConfirm(event.target.value)}/>
                 <Errors
-                className="required" show="touched" model="form" messages={{
+                className="flex justify-end text-sm -mb-2" show="touched" model="form" messages={{
                 validPassword: "Passwords must match"
                 }}/>
             </div>
-            {/* Privacy Policy */}
-            <div className="privacy px-32 py-2 flex flex-row">
+            {/* Privacy Policy
+            <div className="privacy px-32 py-2 flex flex-row justify-center items-center">
                 <Control.checkbox 
-                className="checkbox mt-1" 
+                className="checkbox transform scale-125" 
                 type="checkbox" 
                 model=".policy"
                 onChange={event => setAcceptTerms(event.target.value)}/>
-                <p className="ml-3 text-center">
+                <p className="ml-3 text-center text-indigo-600 font-medium flex items-center">
                 I accept Ignite's Terms of Service and Privacy Policy
                 </p>
-            </div>
+            </div> */}
             {/* Create Button */}
-            <div className="px-32 py-3 flex flex-col botones">
-                <button className="px-5 py-3 boton_verde" type="submit">Create Account</button>
+            <div className="px-32 py-1 flex flex-col mt-8">
+                <button className="px-5 py-2 hover:bg-green-500 text-white bg-green-600 rounded-xl font-bold" type="submit">Create Account</button>
             </div>
-            <img className="h-auto px-32 py-4" src={line} alt="Line" />
+            <img className="h-auto px-32 py-2" src={line} alt="Line" />
             {/* Sign up */}
-            <div className="forgot px-32 py-3 text-right flex flex-col">
-                <button className="px-5 py-2 boton_naranja" onClick={signUpWithGoogle} type="button">
+            <div className="forgot px-32 py-1 text-right flex flex-col">
+                <button className="px-5 py-2 hover:bg-indigo-500 text-white bg-indigo-600 rounded-xl" onClick={signUpWithGoogle} type="button">
                 Sign up with Google
                 </button>
-                <h4 className="mt-4 text-center">
+                <h4 className="mt-4 text-center text-indigo-600">
                 Already have an account? Login{" "}
                 <Link to={"/login"}>
                     <b>

@@ -1,27 +1,29 @@
 import React from "react";
 import "../screens/Shop.css";
-import searchIcon from "../img/searchIcon.png";
 import Item from "./Item";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { useFirestore, useFirestoreDocData, StorageImage } from "reactfire";
+import { useFirestore, useFirestoreDocData } from "reactfire";
+import firebase from "firebase";
 
-function ProductContainer(){
+function ProductContainer(props){
+  
   let images = useFirestore().collection('IA_imgs').doc('admin');
   images = useFirestoreDocData(images);
-  console.log(images);
   
   let keys = Object.keys(images);
-  console.log(keys);
-    return(
-        <div className="products">  
-          {keys.map(key => 
-            <Item 
-              key={key}
-              title={key}
-              image={images[key]['location']}/>
-            )}
+  return(
+        <div className="products flex justify-center flex-wrap">  
+          {
+            keys.filter(key => {
+                let searchTerm = props.searchTerm == undefined ? "" : props.searchTerm.toLowerCase();
+                let currentDate = firebase.firestore.Timestamp.now().valueOf();
+                let imageDate = images[key]['expiration_date'].valueOf();
+
+                if((currentDate < imageDate) && key.toLowerCase().includes(searchTerm)){
+                  return key;
+                }
+            }).map(key => <Item key={key} title={key} image={images[key]['location']} productType={"shirt"}/>)
+          }
+
         </div>
     );
 }

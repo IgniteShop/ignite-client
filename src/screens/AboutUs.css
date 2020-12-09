@@ -1,5 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+.subtitle {
+    color: #5763DD;
+    font-weight: 600;
+}
+
+.textAboutUs {
+    font-weight: 500;
+}
+
+.github {
+    height: 100%;
+    width: 25%;
+    border-radius: 15px;
+    color: white;
+    background-color: black;
+}
+
+.twitter {
+    height: 100%;
+    width: 25%;
+    border-radius: 15px;
+    color: white;
+    background-color: #57C9ED;
+}
+
+.facebook {
+    background-color: #116DB0;
+    height: 100%;
+    width: 28%;
+    border-radius: 15px;
+    color: white;
+}
+
+.aboutUsIcon {
+    height: fit-content;
+}
 
 ::-webkit-scrollbar {
   width: 10px;

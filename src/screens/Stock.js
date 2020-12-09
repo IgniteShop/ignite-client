@@ -17,7 +17,7 @@ function Stock(){
         let numberImages = 5;
 
         for (let i = 0; i < numberImages; i++) {
-            image_promises.push(fetch(`${url}/generate_one`));
+            image_promises.push(fetch(`${url}/preview`));
 
             names_promises.push(fetch(`${url}/name`));
         }
@@ -35,7 +35,7 @@ function Stock(){
         });
 
         
-        if(name_array != undefined && image_array != undefined){
+        if(name_array !== undefined && image_array !== undefined){
             for (let i = 0; i < numberImages; i++) {
                 let name = await name_array[i].text();
 
@@ -55,6 +55,12 @@ function Stock(){
                         expiration_date: firebase.firestore.Timestamp.fromDate(expiration_date),
                         location: `IA_imgs/admin/${name}.jpg`
                     }
+                }).then(() => {
+                    console.log("Image added to database");
+                });
+
+                db.collection('variables').doc('image_expiration').update({
+                    current: firebase.firestore.Timestamp.now()
                 }).then(() => {
                     console.log("Image added to database");
                 });
