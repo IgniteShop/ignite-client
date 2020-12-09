@@ -1,13 +1,17 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import "./Shop.css";
 import ProductContainer from "../components/ProductContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import firebase from "firebase";
+import 'firebase/database';
+import TimeLeft from "../components/TimeLeft";
 
 
 function Shop() {
   const [ searchterm, setSearchterm ] = useState(undefined);
   const [ productType, setProductType ] = useState("shirt");
+
 
   return (
     <div className="flex flex-col mb-4 pt-20 h-full justify-center items-center">
@@ -25,10 +29,7 @@ function Shop() {
       </div>
       {/* Warning Sign */}
       <div className="flex w-screen justify-center">
-        <div className="w-screen flex justify-center mt-2 mb-2 items-center">
-          <FontAwesomeIcon className="clock-icon fill-current text-red-600" icon={faClock} />
-          <h3 className="ml-1 font-light text-red-600">Be quick! Only 3 days left!</h3>
-        </div>
+        <TimeLeft/>
       </div>
       <div className="h-full overflow-x-auto flex main w-screen bg-gray-50 px-12 justify-around">
       
