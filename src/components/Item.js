@@ -18,22 +18,27 @@ function Item({ id, title, image, productType }) {
         return prices.data()[productType.toLowerCase()];
       });
 
-      let cart = db.collection('cart').doc(user.uid);
-      let newItem = {
-        name: title,
-        price: price,
-        type: productType,
-        location: image
+      try {
+        let cart = db.collection('cart').doc(user.uid);
+
+        let newItem = {
+          name: title,
+          price: price,
+          type: productType,
+          location: image
+        }
+  
+        let key = `items.${title}`;
+  
+        cart.update({
+          [key]: {...newItem},
+          total: firebase.firestore.FieldValue.increment(newItem.price)
+        }).then(() => {
+          alert(`Se agregó ${title}` );
+        });
+      } catch {
+        history.push('login');
       }
-
-      let key = `items.${title}`;
-
-      cart.update({
-        [key]: {...newItem},
-        total: firebase.firestore.FieldValue.increment(newItem.price)
-      }).then(() => {
-        alert(`Se agregó ${title}` );
-      });
     } else {
       history.push('login');
     }
