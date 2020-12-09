@@ -10,7 +10,7 @@ import TimeLeft from "../components/TimeLeft";
 
 function Shop() {
   const [ searchterm, setSearchterm ] = useState(undefined);
-  const [ productType, setProductType ] = useState("shirt");
+  const [ productType, setProductType ] = useState("Canvas");
 
 
   return (
@@ -36,7 +36,7 @@ function Shop() {
         {/* Content */}
         <div className="flex w-9/12 justify-around py-4">
           {/* Main Content */}
-          <ProductContainer searchTerm={searchterm}/>
+          <ProductContainer searchTerm={searchterm} productType={productType}/>
         </div>
 
         {/* Preview */}
@@ -52,7 +52,7 @@ function Shop() {
                 <button className="text-gray-700 py-2 px-2 rounded inline-flex items-center w-full">
                   <div className="flex select w-full">
                     <div className="flex w-full items-center text-indigo-600">
-                      <span className="w-full text-center">Select</span>      
+                      <span className="w-full text-center">{productType}</span>      
                       <svg
                         className="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
@@ -65,17 +65,20 @@ function Shop() {
                 </button>
                 <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 w-full text-indigo-600 text-center">
                   <li>
-                    <span className="rounded-t-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1">
+                    <span className="rounded-t-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Canvas")}}>
                       Canvas
                     </span>
                   </li>
                   <li>
-                    <span className="hover:bg-gray-300 cursor-pointer py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1">
+                    <span className="hover:bg-gray-300 cursor-pointer py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Mug")}}>
                       Mug
                     </span>
                   </li>
                   <li>
-                    <span className="rounded-b-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1">
+                    <span className="rounded-b-xl cursor-pointer hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap border-2 border-solid border-blue-700 bg-white -mt-1" onClick={() => {
+                      setProductType("Shirt")}}>
                       Shirt
                     </span>
                   </li>
