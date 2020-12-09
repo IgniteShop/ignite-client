@@ -5,6 +5,7 @@ import { useFirestore, useFirestoreDocData } from "reactfire";
 import firebase from "firebase";
 
 function ProductContainer(props){
+  
   let images = useFirestore().collection('IA_imgs').doc('admin');
   images = useFirestoreDocData(images);
   
@@ -20,7 +21,7 @@ function ProductContainer(props){
                 if((currentDate < imageDate) && key.toLowerCase().includes(searchTerm)){
                   return key;
                 }
-            }).map(key => <Item key={key} title={key} image={images[key]['location']} productType={props.productType}/>)
+            }).map(key => <Item key={key} title={key} image={images[key]['location']} productType={"shirt"}/>)
           }
 
         </div>

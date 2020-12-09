@@ -12,11 +12,12 @@ function Cart() {
   //Getting Cart Items
   let [CartItems, setCartItems] = useState({});
   let [total, setTotal] = useState(0);
-  
   let Userdata = ""
+  
 
   // TODO: Cambiar por contexto de usuario
   useEffect(()=>{
+    
     function GetUser() {
       firebase.auth().onAuthStateChanged(function(user){
         if(user){     
@@ -26,6 +27,7 @@ function Cart() {
       );
     }
     GetUser();
+    console.log(userFB)
   },[])
 
 
@@ -34,6 +36,7 @@ function Cart() {
       var db = firebase.firestore();
 
       let cartData = db.collection("cart").doc(userFB).onSnapshot((cart) => {
+        console.log(cart.data())
         setCartItems(cart.data()['items']);
         setTotal(cart.data()['total']);
 
@@ -41,7 +44,7 @@ function Cart() {
     }
   }, [userFB]);
 
-  if(CartItems == {} || total == 0){
+  if(CartItems === {} || total === 0){
     return (
       <div className="fit-cart flex flex-col">
         <div className="flex w-screen flex-col h-full align-center">

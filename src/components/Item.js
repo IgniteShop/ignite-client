@@ -11,11 +11,13 @@ function Item({ id, title, image, productType }) {
 
   useEffect(() => {
     setUserID(auth.currentUser.uid);
+    
   }, []);
 
   const addToCart = async () => {
     let priceData = db.collection("variables").doc("prices");
     let price = await priceData.get().then((prices) => {
+      
       return prices.data()[productType];
     });
 

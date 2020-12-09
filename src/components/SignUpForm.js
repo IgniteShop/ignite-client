@@ -38,7 +38,11 @@ function SignUpForm(){
                     gens_remaining: 5,
                     name: username
                 });
-    
+                
+                firestore.collection('cart').doc(id).set({
+                    items:{},
+                    total:0
+                })
     
                 current_user.updateProfile({displayName: username});
     
@@ -66,6 +70,11 @@ function SignUpForm(){
                 gens_remaining: 5,
                 name: googleData.displayName
             });
+
+            firestore.collection('cart').doc(id).set({
+                items:{},
+                total:0
+            })
             result.user.updateProfile({displayName: googleData.displayName});
 
             history.push('account');
