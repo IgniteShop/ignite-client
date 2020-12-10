@@ -67,7 +67,7 @@ function LoginForm(){
                 result.user.updateProfile({displayName: googleData.displayName});
             });
 
-            setUser({ "email": googleData.email, "uid": googleData.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+            setUser({ "email": googleData.email, "uid": id, "name": userData.name, "gen_left": userData.gens_remaining })
             
             history.push('/');
         }).catch(error => {

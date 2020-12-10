@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import React, { useContext } from "react";
 import { StorageImage } from "reactfire";
+import { v4 as uuidv4 } from 'uuid';
 import "firebase/firestore"
 import firebase from "firebase";
 import UserContext from '../UserContextProvider';
@@ -28,7 +29,7 @@ function Item({ id, title, image, productType }) {
           location: image
         }
   
-        let key = `items.${title}`;
+        let key = `items.${uuidv4()}`;
   
         cart.update({
           [key]: {...newItem},
@@ -36,7 +37,7 @@ function Item({ id, title, image, productType }) {
         }).then(() => {
           alert(`Se agregó ${title}` );
         });
-      } catch {
+      } catch (error) {
         history.push('login');
       }
     } else {

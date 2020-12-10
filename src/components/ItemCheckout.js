@@ -30,7 +30,7 @@ function ItemCheckout({ id, title, image, price }) {
   const deleteItem = (e => {
     if(userFB){
       let db = firebase.firestore();
-      let key = `items.${title}`;
+      let key = `items.${id}`;
 
       db.collection("cart").doc(userFB).update({
         [key]: firebase.firestore.FieldValue.delete(),

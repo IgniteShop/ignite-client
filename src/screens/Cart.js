@@ -70,8 +70,8 @@ function Cart() {
               {
                 keys.map((item)=>
                   <ItemCheckout 
-                    key = {CartItems[item]['name']}
-                    id = {CartItems[item]['name']}
+                    key = {item}
+                    id = {item}
                     title={CartItems[item]['name']}
                     image={`${CartItems[item]['location']}/${CartItems[item]['type'].toLowerCase()}.jpg`}
                     price={`${CartItems[item]['price']}`}
