@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import firebase from "firebase";
 import UserContext from "../UserContextProvider";
 import Swal from "sweetalert2";
+import { useFirestore, useFirestoreDocData } from 'reactfire';
 import withReactContent from "sweetalert2-react-content";
 import ProfilePicture from "../img/profile.png";
 
@@ -16,7 +17,12 @@ require("firebase/auth");
 function Account() {
 	const MySwal = withReactContent(Swal);
 	const { user, setUser } = useContext(UserContext);
+	// const [ images, setImages ] = useState([]);
 	const history = useHistory();
+	
+	let images = useFirestore().collection('users').doc(user.uid);
+	images = useFirestoreDocData(images);
+	let keys = Object.entries(images);
 
 	return (
 		<div className="fit-account flex flex-col pt-20">
@@ -46,23 +52,23 @@ function Account() {
 							<p>
 								{user.email}
 								<button className="outline-none" onClick={() => {
-                  Swal.fire({
-                    title: 'Enter you new email',
-                    text: 'Remember this action will log you out. Please log in with your new credentials',
-                    icon: 'warning',
-                    input: 'text',
-                    inputAttributes: {
-                      autocapitalize: 'off'
-                    },
-                    showCancelButton: true,
-                    confirmButtonText: 'Modify',
-                    showLoaderOnConfirm: true,
-                    preConfirm: (email) => {
-                      firebase.auth().currentUser.updateEmail(email)
-                    },
-                    allowOutsideClick: () => !Swal.isLoading()
-                  })
-                }}>
+									Swal.fire({
+										title: 'Enter you new email',
+										text: 'Remember this action will log you out. Please log in with your new credentials',
+										icon: 'warning',
+										input: 'text',
+										inputAttributes: {
+										autocapitalize: 'off'
+										},
+										showCancelButton: true,
+										confirmButtonText: 'Modify',
+										showLoaderOnConfirm: true,
+										preConfirm: (email) => {
+										firebase.auth().currentUser.updateEmail(email)
+										},
+										allowOutsideClick: () => !Swal.isLoading()
+									})
+									}}>
 									<FontAwesomeIcon
 										className="edit-icon ml-1"
 										icon={faEdit}
@@ -73,33 +79,33 @@ function Account() {
 						{/* Buttons */}
 						<div className="flex flex-col mt-16 mb-5">
 							<button className="flex bg-indigo-600 text-white rounded-md font-medium py-2 px-5 justify-center" onClick={() => {
-                Swal.fire({
-                  title: 'Enter your new password',
-                  text: 'Remember this action will log you out. Please log in with your new credentials',
-                  icon: 'warning',
-                  input: 'password',
-                  inputAttributes: {
-                    autocapitalize: 'off'
-                  },
-                  showCancelButton: true,
-                  confirmButtonText: 'Modify',
-                  showLoaderOnConfirm: true,
-                  preConfirm: (password) => {
-                    firebase.auth().currentUser.updatePassword(password)
-                  },
-                  allowOutsideClick: () => !Swal.isLoading()
-                }).then(result => {
-                  if(result.isConfirmed) {
-                    Swal.fire({
-                      position: 'center',
-                      icon: 'success',
-                      title: 'Your password has been modified successfully!',
-                      showConfirmButton: false,
-                      timer: 1500
-                    })
-                  }
-                })
-              }}>
+									Swal.fire({
+									title: 'Enter your new password',
+									text: 'Remember this action will log you out. Please log in with your new credentials',
+									icon: 'warning',
+									input: 'password',
+									inputAttributes: {
+										autocapitalize: 'off'
+									},
+									showCancelButton: true,
+									confirmButtonText: 'Modify',
+									showLoaderOnConfirm: true,
+									preConfirm: (password) => {
+										firebase.auth().currentUser.updatePassword(password)
+									},
+									allowOutsideClick: () => !Swal.isLoading()
+									}).then(result => {
+									if(result.isConfirmed) {
+										Swal.fire({
+										position: 'center',
+										icon: 'success',
+										title: 'Your password has been modified successfully!',
+										showConfirmButton: false,
+										timer: 1500
+										})
+									}
+									})
+								}}>
 								Change Password
 							</button>
 							<button
@@ -148,27 +154,17 @@ function Account() {
 						</div>
 						{/* Images */}
 						<div className="mt-5 h-full image-container">
-							<ItemAccount
-								id="1"
-								title={"Noto Space"}
-								image={
-									"https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+							{keys.map((image) => {
+								console.log(image)
+								if (image[1].canvas) {
+									return (<ItemAccount
+										key = {image[0]}
+										image={
+											image[1].shirt
+										}
+									/>);
 								}
-							/>
-							<ItemAccount
-								id="1"
-								title={"Noto Space"}
-								image={
-									"https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-								}
-							/>
-							<ItemAccount
-								id="1"
-								title={"Noto Space"}
-								image={
-									"https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-								}
-							/>
+							})}
 						</div>
 					</div>
 				</div>

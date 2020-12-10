@@ -31,8 +31,11 @@ function SaveButton(props) {
     )
 }
 
+var images = new Array(2)
+var canvas
+
 function Generate() {
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const history = useHistory()
     const [image, setImage] = useState(Placeholder)
     const MySwal = withReactContent(Swal)
@@ -40,7 +43,6 @@ function Generate() {
     const db = app.firestore()
     const url = 'http://localhost:5000'
 
-    var images = []
 
     useEffect(() => {
         if (Object.entries(user).length === 0) {
@@ -48,14 +50,13 @@ function Generate() {
         }
     })
 
-    const generateImage = async () => {
-        let fetchedImage = await fetch(`${url}/generate_one`, {
+    async function generateImage(){
+        let tmpImage = await fetch(`${url}/generate_one`, {
             'Content-Type': 'image/png',
         })
-        images.push(fetchedImage)
-        fetchedImage.blob().then((image) => {
+        tmpImage.blob().then((image) => {
+            canvas = image
             setImage(URL.createObjectURL(image))
-            console.log(URL.createObjectURL(image))
         }).catch((error) => {
             console.warn(error);
             MySwal.fire({
@@ -72,7 +73,7 @@ function Generate() {
         })
     }
 
-    const saveImage = async () => {
+    async function saveImage(){
         if (user.gen_left < 1) {
             return
         }
@@ -83,15 +84,16 @@ function Generate() {
             let storageUrl = `/IA_imgs/users/${user.uid}/${name}`;
             let storageRef = app.storage().ref();
 
-            images.push(await fetch(`${url}/shirt`, {
+            images[0] = await fetch(`${url}/shirt`, {
                 'Content-Type': 'image/png',
-            }))
-            images.push(await fetch(`${url}/mug`, {
+            })
+            images[1] = await fetch(`${url}/mug`, {
                 'Content-Type': 'image/png',
-            }))
+            })
 
             let promises = images.map(image => image.blob());
             let blobs = await Promise.all(promises).catch((error) => {
+                console.log(error)
                 MySwal.fire({
                     title: <p>An error ocurred!</p>,
                     toast: true,
@@ -104,6 +106,8 @@ function Generate() {
                     position: 'bottom-end',
                 })
             });
+            blobs.unshift(canvas)
+            console.log(blobs)
 
             let ref = [storageRef.child(`${storageUrl}/canvas.jpg`), storageRef.child(`${storageUrl}/shirt.jpg`), storageRef.child(`${storageUrl}/mug.jpg`)];
 
@@ -126,8 +130,8 @@ function Generate() {
             }
 
             var canvas = await ref[0].getDownloadURL().then(url => url)
-            var shirt = await ref[0].getDownloadURL().then(url => url)
-            var mug = await ref[0].getDownloadURL().then(url => url)
+            var shirt = await ref[1].getDownloadURL().then(url => url)
+            var mug = await ref[2].getDownloadURL().then(url => url)
 
             db.collection('users').doc(user.uid).update({
                 gens_remaining: firebase.firestore.FieldValue.increment(-1),
@@ -138,6 +142,10 @@ function Generate() {
                 }
             }).then(() => {
                 setImage(Placeholder)
+                setUser({
+                    ...user,
+                    gen_left: user.gen_left-1
+                })
                 MySwal.fire({
                     title: <p>Images succesfuly saved!</p>,
                     toast: true,
