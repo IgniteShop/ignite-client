@@ -4,12 +4,15 @@ import { StorageImage } from "reactfire";
 import "firebase/firestore"
 import firebase from "firebase";
 import UserContext from '../UserContextProvider';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 
 function Item({ id, title, image, productType }) {
   const { user } = useContext(UserContext);
   const db = firebase.firestore();
   const history = useHistory();
+  const MySwal = withReactContent(Swal);
 
   const addToCart = async () => {
     if(user != {}){
@@ -34,7 +37,17 @@ function Item({ id, title, image, productType }) {
           [key]: {...newItem},
           total: firebase.firestore.FieldValue.increment(newItem.price)
         }).then(() => {
-          alert(`Se agregó ${title}` );
+          MySwal.fire({
+            title: <p>Product added to cart!</p>,
+            toast: true,
+            icon: "success",
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            background: "#fff",
+            iconColor: "#05c46b",
+            position: 'bottom-end',
+          })
         });
       } catch {
         history.push('login');

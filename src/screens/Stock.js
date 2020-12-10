@@ -4,9 +4,14 @@ import firebase from "firebase";
 import './Stock.css'
 import 'firebase/auth';
 import 'firebase/database';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
 
 function Stock(){
-
+    
+    const MySwal = withReactContent(Swal);
     const app = useFirebaseApp();
     const db = app.firestore();
 
@@ -24,7 +29,17 @@ function Stock(){
             
             let promises = products.map(image => image.blob());
             let blobs = await Promise.all(promises).catch((error) => {
-                alert(error);
+                MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             });
 
             let name = await (await fetch(`${url}/name`)).text();
@@ -59,7 +74,17 @@ function Stock(){
 
                 console.log("Generación finalizada")
             } else {
-                alert("Error de servidor");
+                MySwal.fire({
+                    title: <p>Server error!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             }
         }
     }

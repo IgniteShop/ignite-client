@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-.background {
-    background-color: #F5F6F8;
-    margin: 0px !important;
-}
-
 .fit__generate {
     height: 91vh !important;
     margin: 0px !important;
@@ -13,16 +8,6 @@
 
 .fit2__generate {
     height: 85vh;
-}
-
-.titleBar h1 {
-    font-family: 'Montserrat';
-    font-weight: 600;
-}
-
-.titleBar h3 {
-    font-family: 'Montserrat';
-    font-weight: 600;
 }
 
 .generated {
@@ -40,37 +25,4 @@
 
 .edition {
     padding: 10px 20px 10px 20px;
-}
-
-
-.edit__title {
-    height: fit-content;
-}
-    .edit__title h1 {
-        font-weight: 600;
-        padding: 0px 100px 0px 100px;
-    }
-
-.sliders {
-    height: fit-content;
-    flex-direction: column;
-}
-
-.slider input {
-    width: 50%;
-}
-
-.edit__title {
-    color: black;
-    font-weight: 600;
-}
-
-.actualValue {
-    background-color: white;
-    padding: 1px 8px 1px 8px;
-    box-shadow: 2px 3px #72727241;
-    color: black;
-    font-weight: 400;
-    font-size: 1em;
-    border-radius: 5px;
 }

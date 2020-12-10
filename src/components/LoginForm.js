@@ -5,12 +5,15 @@ import { useHistory } from 'react-router-dom';
 import 'firebase/auth';
 import 'firebase/database';
 import firebase from "firebase";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import UserContext from '../UserContextProvider';
 
 function LoginForm(){
     const { setUser } = useContext(UserContext)
     const history = useHistory();
+    const MySwal = withReactContent(Swal)
 
     useEffect(() => {
         firebase.auth().signOut();
@@ -30,7 +33,17 @@ function LoginForm(){
             const userData = doc.data()
             return userData
         } else {
-            alert("Something went wrong :(")
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         }
     }
 
@@ -39,7 +52,19 @@ function LoginForm(){
         .then((user) => {
             history.push("account")
         })
-        .catch((error) => {alert(error)});
+        .catch((error) => {
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
+        });
 
         firebase.auth().onAuthStateChanged(async user => {
             if(user) {
@@ -73,7 +98,17 @@ function LoginForm(){
             history.push('account');
 
         }).catch(error => {
-            alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
 
         firebase.auth().onAuthStateChanged(async user => {
