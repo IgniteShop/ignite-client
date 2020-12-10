@@ -15,7 +15,7 @@ function Cart() {
   const history = useHistory();
 
   useEffect(()=> {
-    if(user != {}){
+    if(user !== {}){
       var db = firebase.firestore();
 
       try {

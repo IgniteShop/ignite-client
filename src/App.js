@@ -12,6 +12,7 @@ import Product from './screens/Product.js';
 import Cart from './screens/Cart.js';
 import Stock from './screens/Stock.js';
 import Home from './screens/Home.js';
+import Page404 from './screens/404.js';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
 					<Route exact path='/product' component={Product}/>
 					<Route exact path='/cart' component={Cart}/>
 					<Route exact path='/aboutus' component={AboutUs}/>
-					<Route exact ath='/generateStock' component={Stock}/>
+					<Route exact path='/generateStock' component={Stock}/>
+					<Route component={Page404}/>
 				</Switch>
 			</div>
 		</Suspense>
