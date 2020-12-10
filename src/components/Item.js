@@ -1,47 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { StorageImage, useAuth } from "reactfire";
+import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { StorageImage } from "reactfire";
 import "firebase/firestore"
 import firebase from "firebase";
+import UserContext from '../UserContextProvider';
+
 
 function Item({ id, title, image, productType }) {
+  const { user } = useContext(UserContext);
   const db = firebase.firestore();
-  // TODO: remplazar con contexto de usuario
-  const auth = useAuth();
-  const [userID, setUserID] = useState(undefined);
-
-  useEffect(() => {
-    setUserID(auth.currentUser.uid);
-    
-  }, []);
+  const history = useHistory();
 
   const addToCart = async () => {
-    let priceData = db.collection("variables").doc("prices");
-    let price = await priceData.get().then((prices) => {
-      return prices.data()[productType.toLowerCase()];
-    });
+    if(user != {}){
+      let priceData = db.collection("variables").doc("prices");
+      let price = await priceData.get().then((prices) => {
+        return prices.data()[productType.toLowerCase()];
+      });
 
-    let cart = db.collection('cart').doc(userID);
-    let newItem = {
-      name: title,
-      price: price,
-      type: productType,
-      location: image
+      try {
+        let cart = db.collection('cart').doc(user.uid);
+
+        let newItem = {
+          name: title,
+          price: price,
+          type: productType,
+          location: image
+        }
+  
+        let key = `items.${title}`;
+  
+        cart.update({
+          [key]: {...newItem},
+          total: firebase.firestore.FieldValue.increment(newItem.price)
+        }).then(() => {
+          alert(`Se agregó ${title}` );
+        });
+      } catch {
+        history.push('login');
+      }
+    } else {
+      history.push('login');
     }
-
-    let key = `items.${title}`;
-
-    cart.update({
-      [key]: {...newItem},
-      total: firebase.firestore.FieldValue.increment(newItem.price)
-    }).then(() => {
-      alert(`Se agregó ${title}` );
-    });
   }
 
   return (
     <div className="shadow-lg w-56 h-auto flex bg-white flex-col m-3 rounded-xl">
       <div className="w-56 h-56 rounded-t-xl">
-        <StorageImage className="rounded-t-xl" storagePath={image}/>
+        <StorageImage className="rounded-t-xl" storagePath={`${image}/${productType}.jpg`}/>
       </div>
       <div className="px-5 py-3 flex flex-col justify-center items-center">
         <p className="text-xs text-black truncate">{title}</p>
