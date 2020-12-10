@@ -65,10 +65,10 @@ export default function Header() {
         return (
             <nav className="flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg mb-3 fixed w-full h-20 mainPageHeader">
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-                    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start header">
+                    <div className="w-full relative items-center h-full flex justify-between lg:w-auto lg:static lg:block lg:justify-start header">
                         {/* Logo y nombre de app */}
                         <div className="flex">
-                            <Link to={'/'}>
+                            <Link to={'/'} className="flex items-center w-full h-full">
                                 <img
                                     className="logo"
                                     src={logo_white}
@@ -108,10 +108,10 @@ export default function Header() {
         return (
             <nav className="flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg background mb-3 fixed w-full h-20">
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-                    <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start header">
+                    <div className="w-full relative items-center h-full flex justify-between lg:w-auto lg:static lg:block lg:justify-start header">
                         {/* Logo y nombre de app */}
                         <div className="flex">
-                            <Link to={'/'}>
+                            <Link to={'/'} className="flex items-center w-full h-full">
                                 <img className="logo" src={logo} alt="Logo" />
                             </Link>
                         </div>

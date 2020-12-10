@@ -7,6 +7,6 @@
 }
 
 .clip-background {
-    -webkit-clip-path: polygon(0 10%, 0% 105%, 102% 10%);
-    clip-path: polygon(0 10%, 0% 105%, 102% 10%);
+    -webkit-clip-path: polygon(0 8%, 0% 105%, 105% 8%);
+    clip-path: polygon(0 8%, 0% 105%, 105% 8%);
 }
