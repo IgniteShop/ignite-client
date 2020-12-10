@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Account.css";
 import ItemAccount from "../components/ItemAccount";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase";
+import UserContext from '../UserContextProvider';
+
+
 require("firebase/firestore")
 require ('firebase/auth')
 
 function Account() {
+  const { user } = useContext(UserContext);
   const history = useHistory()
-  const [userEmail, setUserEmail] = useState("")
-  
+
   useEffect(() => {
-    const user = firebase.auth().currentUser
-    console.log("USER: ", user.email) 
-    setUserEmail(user.email)
+    if(!user){
+      history.push('/login');
+    }
   }, [])
 
   return (
@@ -41,7 +44,7 @@ function Account() {
             {/* Email */}
             <div className="flex flex-col justify-center text-center mt-5 email">
               <h2>E-mail</h2>
-              <p>{ userEmail }<FontAwesomeIcon className="edit-icon ml-1" icon={faEdit} /></p>
+              <p>{ user.email }<FontAwesomeIcon className="edit-icon ml-1" icon={faEdit} /></p>
             </div>
             {/* Buttons */}
             <div className="flex flex-col mt-16 mb-5">
