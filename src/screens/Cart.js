@@ -1,48 +1,37 @@
-import React, { Suspense ,useState , useEffect } from "react";
+import React, { useContext ,useState , useEffect } from "react";
 import "./Cart.css";
 import SoloCart from "../img/SoloCart.svg";
 import ItemCheckout from "../components/ItemCheckout";
 import firebase from "firebase";
+import UserContext from '../UserContextProvider';
+import { useHistory } from "react-router-dom";
 require("firebase/firestore")
 require ('firebase/auth')
 
-function Cart() {
-  //Getting User ID
-  let [userFB,setUserFB] =useState("")
-  //Getting Cart Items
+function Cart() {  
   let [CartItems, setCartItems] = useState({});
   let [total, setTotal] = useState(0);
-  let Userdata = ""
-  
-
-  // TODO: Cambiar por contexto de usuario
-  useEffect(()=>{
-    
-    function GetUser() {
-      firebase.auth().onAuthStateChanged(function(user){
-        if(user){     
-          Userdata = user.uid
-          setUserFB(Userdata)
-        }}
-      );
-    }
-    GetUser();
-    console.log(userFB)
-  },[])
-
+  const { user } = useContext(UserContext);  
+  const history = useHistory();
 
   useEffect(()=> {
-    if(userFB){
+    if(user != {}){
       var db = firebase.firestore();
 
-      let cartData = db.collection("cart").doc(userFB).onSnapshot((cart) => {
-        console.log(cart.data())
-        setCartItems(cart.data()['items']);
-        setTotal(cart.data()['total']);
+      try {
+        db.collection("cart").doc(user.uid).onSnapshot((cart) => {
+          setCartItems(cart.data()['items']);
+          setTotal(cart.data()['total']);
+  
+        });
+      } catch {
+        history.push('login');
+      }
 
-      });
+    } else {
+      history.push('login');
     }
-  }, [userFB]);
+  }, [user]);
 
   if(CartItems === {} || total === 0){
     return (
@@ -84,7 +73,7 @@ function Cart() {
                     key = {CartItems[item]['name']}
                     id = {CartItems[item]['name']}
                     title={CartItems[item]['name']}
-                    image={`${CartItems[item]['location']}`}
+                    image={`${CartItems[item]['location']}/${CartItems[item]['type'].toLowerCase()}.jpg`}
                     price={`${CartItems[item]['price']}`}
                 />)
               }

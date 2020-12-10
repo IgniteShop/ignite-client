@@ -1,0 +1,12 @@
+.image-background {
+    background: url('../img/home_image.png');
+    background-position-y: bottom;
+    background-position-x: right;
+    background-size: 55%;
+    background-repeat: no-repeat;
+}
+
+.clip-background {
+    -webkit-clip-path: polygon(0 10%, 0% 105%, 102% 10%);
+    clip-path: polygon(0 10%, 0% 105%, 102% 10%);
+}

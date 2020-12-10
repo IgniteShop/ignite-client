@@ -14,7 +14,6 @@ function Shop() {
 
   return (
     <div className="flex flex-col mb-4 pt-20 h-full justify-center items-center">
-    <Suspense fallback={<p className="text-xl text-indigo-600">Loading...</p>} className="flex justify-center align-center">
       {/* Shop Title and Search Bar */}
       <div className="block flex w-screen flex-col justify-center">
         {/* Title */}
@@ -33,11 +32,12 @@ function Shop() {
       <div className="h-full overflow-x-auto flex main w-screen bg-gray-50 px-12 justify-around">
       
         {/* Content */}
-        <div className="flex w-9/12 justify-around py-4">
-          {/* Main Content */}
-          <ProductContainer searchTerm={searchterm} productType={productType}/>
-        </div>
-
+        <Suspense fallback={<p className="text-xl text-indigo-600">Loading...</p>} className="flex justify-center align-center">
+          <div className="flex w-9/12 justify-around py-4">
+            {/* Main Content */}
+            <ProductContainer searchTerm={searchterm} productType={productType}/>
+          </div>
+        </Suspense>
         {/* Preview */}
         <div className="w-2/12 background">
           <div className="bg-white flex flex-col p-6 rounded-2xl items-center">
@@ -87,7 +87,6 @@ function Shop() {
           </div>
         </div>
       </div>
-    </Suspense>
   </div>
   );
 }
