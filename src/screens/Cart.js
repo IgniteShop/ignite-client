@@ -19,8 +19,7 @@ function Cart() {
       var db = firebase.firestore();
 
       try {
-        let cartData = db.collection("cart").doc(user.uid).onSnapshot((cart) => {
-          console.log(cart.data())
+        db.collection("cart").doc(user.uid).onSnapshot((cart) => {
           setCartItems(cart.data()['items']);
           setTotal(cart.data()['total']);
   
@@ -74,7 +73,7 @@ function Cart() {
                     key = {CartItems[item]['name']}
                     id = {CartItems[item]['name']}
                     title={CartItems[item]['name']}
-                    image={`${CartItems[item]['location']}`}
+                    image={`${CartItems[item]['location']}/${CartItems[item]['type'].toLowerCase()}.jpg`}
                     price={`${CartItems[item]['price']}`}
                 />)
               }

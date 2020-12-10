@@ -47,7 +47,7 @@ function Item({ id, title, image, productType }) {
   return (
     <div className="shadow-lg w-56 h-auto flex bg-white flex-col m-3 rounded-xl">
       <div className="w-56 h-56 rounded-t-xl">
-        <StorageImage className="rounded-t-xl" storagePath={image}/>
+        <StorageImage className="rounded-t-xl" storagePath={`${image}/${productType}.jpg`}/>
       </div>
       <div className="px-5 py-3 flex flex-col justify-center items-center">
         <p className="text-xs text-black truncate">{title}</p>
