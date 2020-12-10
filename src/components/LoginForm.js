@@ -48,9 +48,9 @@ function LoginForm(){
                 console.log("DATA: ", userData)
                 
                 setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+                history.push('account');
             }
         })
-        history.push('account');
     };
 
     const loginWithGoogle = () => {
