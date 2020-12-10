@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import firebase from "firebase";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const UserContext = React.createContext({});
 
 export function UserContextProvider({ children }) {
-	const [user, setUser] = useState({})
+    const [user, setUser] = useState({})
+    const MySwal = withReactContent(Swal);
 
 	const getUserData = async (uid) => {
         const db = firebase.firestore()
@@ -14,7 +17,17 @@ export function UserContextProvider({ children }) {
             const userData = doc.data()
             return userData
         } else {
-            alert("User document doesn't exist")
+            MySwal.fire({
+                title: <p>User document doesn't exist</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         }
     }
 
