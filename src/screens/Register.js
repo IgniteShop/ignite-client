@@ -2,11 +2,12 @@ import React, { Suspense } from "react";
 import shirts from "../img/MainShirts.png";
 import SignUpForm from "../components/SignUpForm"
 import 'firebase/auth';
+import Loader from '../components/Loader';
 
 function Register(){
   return (
     <div className="flex mb-4 background justify-center items-center h-screen pt-12 px-10">
-      <Suspense fallback={<p className="text-indigo-600">Loading...</p>}>
+      <Suspense fallback={<Loader type={"bubbles"} color={"#5a67d8"}/>}>
         {/* Titles */}
         <div className="flex w-1/2 flex-col justify-center">
           <div className="px-32 py-5 text-center text-indigo-600">
