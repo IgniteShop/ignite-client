@@ -1,71 +1,95 @@
 import React from "react";
 import { useFirebaseApp } from "reactfire";
 import firebase from "firebase";
+import './Stock.css'
 import 'firebase/auth';
 import 'firebase/database';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
 
 function Stock(){
-
+    
+    const MySwal = withReactContent(Swal);
     const app = useFirebaseApp();
     const db = app.firestore();
 
     const url = "http://localhost:5000";
 
     const generateStock = async () => {
-        let image_promises = [];
-        let names_promises = [];
         let numberImages = 5;
-
-        for (let i = 0; i < numberImages; i++) {
-            image_promises.push(fetch(`${url}/preview`));
-
-            names_promises.push(fetch(`${url}/name`));
-        }
-
-        let image_array = await Promise.all(image_promises).catch((error) => {
-            alert(error);
-        });
-        let name_array =  await Promise.all(names_promises).catch((error) => {
-            alert(error);
-        });
-
-        let blob_promises = image_array.map(image => image.blob());
-        let blob_array = await Promise.all(blob_promises).catch((error) => {
-            alert(error);
-        });
-
+        let expiration_date = new Date();
+        expiration_date.setDate(expiration_date.getDate() + 30);
         
-        if(name_array !== undefined && image_array !== undefined){
-            for (let i = 0; i < numberImages; i++) {
-                let name = await name_array[i].text();
+        for (let i = 0; i < numberImages; i++) {
+            let products = [await fetch(`${url}/generate_one`), 
+                            await fetch(`${url}/shirt`), 
+                            await fetch(`${url}/mug`)];
+            
+            let promises = products.map(image => image.blob());
+            let blobs = await Promise.all(promises).catch((error) => {
+                MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
+            });
 
-                let expiration_date = new Date();
-                expiration_date.setDate(expiration_date.getDate() + 30);
+            let name = await (await fetch(`${url}/name`)).text();
+
+            if(name !== undefined && blobs !== undefined){
+                let url = `/IA_imgs/admin/${name}`;
 
                 let storageRef = app.storage().ref();
 
-                let ref = storageRef.child(`/IA_imgs/admin/${name}.jpg`);
+                let ref = [storageRef.child(`${url}/canvas.jpg`), storageRef.child(`${url}/shirt.jpg`), storageRef.child(`${url}/mug.jpg`)];
 
-                ref.put(blob_array[i]).then(() => {
-                    console.log('Uploaded a blob or file!');
-                });
+                for (let i = 0; i < ref.length; i++) {
+                    ref[i].put(blobs[i]).then(() => {
+                        console.log('Uploaded a blob or file!');
+                    });    
+                }           
 
                 db.collection('IA_imgs').doc('admin').update({
                     [name]: {
                         expiration_date: firebase.firestore.Timestamp.fromDate(expiration_date),
-                        location: `IA_imgs/admin/${name}.jpg`
+                        location: `IA_imgs/admin/${name}`
                     }
                 }).then(() => {
                     console.log("Image added to database");
                 });
+
+                db.collection('variables').doc('image_expiration').update({
+                    current: firebase.firestore.Timestamp.fromDate(expiration_date)
+                }).then(() => {
+                    console.log("Image added to database");
+                });
+
+                console.log("Generación finalizada")
+            } else {
+                MySwal.fire({
+                    title: <p>Server error!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             }
-        } else {
-            alert("Error de servidor");
         }
     }
-
     return(
-        <button className="px-5 py-2 boton_verde" onClick={generateStock}>Generate Stock!</button>
+        <button className="px-5 py-2 boton_stock" onClick={generateStock}>Generate Stock!</button>
     );
 }
 

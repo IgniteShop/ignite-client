@@ -1,49 +1,41 @@
-import React, { Suspense ,useState , useEffect } from "react";
+import React, { useContext ,useState , useEffect } from "react";
 import "./Cart.css";
 import SoloCart from "../img/SoloCart.svg";
 import ItemCheckout from "../components/ItemCheckout";
 import firebase from "firebase";
+import UserContext from '../UserContextProvider';
+import { useHistory } from "react-router-dom";
 require("firebase/firestore")
 require ('firebase/auth')
 
-function Cart() {
-  //Getting User ID
-  let [userFB,setUserFB] =useState("")
-  //Getting Cart Items
+function Cart() {  
   let [CartItems, setCartItems] = useState({});
   let [total, setTotal] = useState(0);
-  
-  let Userdata = ""
-
-  // TODO: Cambiar por contexto de usuario
-  useEffect(()=>{
-    function GetUser() {
-      firebase.auth().onAuthStateChanged(function(user){
-        if(user){     
-          Userdata = user.uid
-          setUserFB(Userdata)
-        }}
-      );
-    }
-    GetUser();
-  },[])
-
+  const { user } = useContext(UserContext);  
+  const history = useHistory();
 
   useEffect(()=> {
-    if(userFB){
+    if(Object.entries(user).length != 0){
       var db = firebase.firestore();
 
-      let cartData = db.collection("cart").doc(userFB).onSnapshot((cart) => {
-        setCartItems(cart.data()['items']);
-        setTotal(cart.data()['total']);
+      try {
+        db.collection("cart").doc(user.uid).onSnapshot((cart) => {
+          setCartItems(cart.data()['items']);
+          setTotal(cart.data()['total']);
+  
+        });
+      } catch {
+        history.push('login');
+      }
 
-      });
+    } else {
+      history.push('login');
     }
-  }, [userFB]);
+  }, [user]);
 
-  if(CartItems == {} || total == 0){
+  if(CartItems === {} || total === 0){
     return (
-      <div className="fit-cart flex flex-col">
+      <div className="fit-cart flex flex-col pt-20">
         <div className="flex w-screen flex-col h-full align-center">
           {/* Title */}
           <div className="w-screen flex justify-center titleBar">
@@ -52,7 +44,7 @@ function Cart() {
           <div className="flex items-center justify-center flex-col h-full">
           {/* Image */}
             <div className="flex justify-center cart__image">
-              <img className="flex rounded-t-xl" src={SoloCart} alt="Solo Cart" />
+              <img className="flex rounded-t-xl w-8/12" src={SoloCart} alt="Solo Cart" />
             </div>
           </div>
           {/* Description */}
@@ -81,7 +73,7 @@ function Cart() {
                     key = {CartItems[item]['name']}
                     id = {CartItems[item]['name']}
                     title={CartItems[item]['name']}
-                    image={`${CartItems[item]['location']}`}
+                    image={`${CartItems[item]['location']}/${CartItems[item]['type'].toLowerCase()}.jpg`}
                     price={`${CartItems[item]['price']}`}
                 />)
               }

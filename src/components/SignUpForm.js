@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
 import { useFirebaseApp, useUser, useFirestore } from "reactfire";
 import { Link, useHistory } from "react-router-dom";
@@ -6,12 +6,17 @@ import line from "../img/line.png";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+import UserContext from '../UserContextProvider';
 
 function SignUpForm(){
+    const MySwal = withReactContent(Swal);
     const firebase = useFirebaseApp();
-    const current_user = useUser();
     const firestore = useFirestore();
     const history = useHistory();
+    const { setUser } = useContext(UserContext);
     
     const [username, setUsername] = useState(undefined);
     const [email, setEmail] = useState(undefined);
@@ -24,9 +29,7 @@ function SignUpForm(){
     const validEmail = (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
     const validPassword = (values) => values.password === values.repeatPassword || !values.password || !values.repeatPassword;
 
-    const signUp = () => { 
-        firebase.auth().signOut();
- 
+    const signUp = () => {  
         //TODO: mensaje cuando el usuario se crea, mensaje si el correo ya está ocupado
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(result => {
@@ -38,18 +41,64 @@ function SignUpForm(){
                     gens_remaining: 5,
                     name: username
                 });
-    
+                
+                firestore.collection('cart').doc(id).set({
+                    items:{},
+                    total:0
+                })
     
                 current_user.updateProfile({displayName: username});
     
-                history.push('account');
+                history.push('/login');
             } else {
-                alert("NO");
+                MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             }
         }).catch(error => {
-        alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
     };
+
+    const getUserData = async (uid) => {
+        const db = firebase.firestore()
+        const userRef = db.collection("users").doc(uid)
+        const doc = await userRef.get()
+        if(doc.exists) {
+            const userData = doc.data()
+            return userData
+        } else {
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
+        }
+    }
 
     const signUpWithGoogle = () => {
         firebase.auth().signOut();
@@ -57,21 +106,35 @@ function SignUpForm(){
         let provider = new firebasic.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
-        firebase.auth().signInWithPopup(provider).then(result => {
+        firebase.auth().signInWithPopup(provider).then(async result => {
             // Get user info returned by Google's API. result.user is
             let googleData = result.user.providerData[0];
-            let id = googleData.uid;
-
-            firestore.collection('users').doc(id).set({
-                gens_remaining: 5,
-                name: googleData.displayName
+            let id = result.user.uid;
+            
+            const userData = await getUserData(id).catch(() => {
+                firebase.firestore().collection('users').doc(id).set({
+                    gens_remaining: 5,
+                    name: googleData.displayName
+                });
+                result.user.updateProfile({displayName: googleData.displayName});
             });
-            result.user.updateProfile({displayName: googleData.displayName});
 
-            history.push('account');
+            setUser({ "email": googleData.email, "uid": googleData.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+
+            history.push('/');
 
         }).catch(error => {
-            alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
 
     };

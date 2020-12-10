@@ -1,52 +1,77 @@
-import React, { useEffect, useState } from "react";
-import { StorageImage, useAuth } from "reactfire";
+import { useHistory } from "react-router-dom";
+import React, { useContext } from "react";
+import { StorageImage } from "reactfire";
 import "firebase/firestore"
 import firebase from "firebase";
+import UserContext from '../UserContextProvider';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 
 function Item({ id, title, image, productType }) {
+  const { user } = useContext(UserContext);
   const db = firebase.firestore();
-  // TODO: remplazar con contexto de usuario
-  const auth = useAuth();
-  const [userID, setUserID] = useState(undefined);
-
-  useEffect(() => {
-    setUserID(auth.currentUser.uid);
-  }, []);
+  const history = useHistory();
+  const MySwal = withReactContent(Swal);
 
   const addToCart = async () => {
-    let priceData = db.collection("variables").doc("prices");
-    let price = await priceData.get().then((prices) => {
-      return prices.data()[productType];
-    });
+    if(user != {}){
+      let priceData = db.collection("variables").doc("prices");
+      let price = await priceData.get().then((prices) => {
+        return prices.data()[productType.toLowerCase()];
+      });
 
-    let cart = db.collection('cart').doc(userID);
-    let newItem = {
-      name: title,
-      price: price,
-      type: productType,
-      location: image
+      try {
+        let cart = db.collection('cart').doc(user.uid);
+
+        let newItem = {
+          name: title,
+          price: price,
+          type: productType,
+          location: image
+        }
+  
+        let key = `items.${title}`;
+  
+        cart.update({
+          [key]: {...newItem},
+          total: firebase.firestore.FieldValue.increment(newItem.price)
+        }).then(() => {
+          MySwal.fire({
+            title: <p>Product added to cart!</p>,
+            toast: true,
+            icon: "success",
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            background: "#fff",
+            iconColor: "#05c46b",
+            position: 'bottom-end',
+          })
+        });
+      } catch {
+        history.push('login');
+      }
+    } else {
+      history.push('login');
     }
-
-    let key = `items.${title}`;
-
-    cart.update({
-      [key]: {...newItem},
-      total: firebase.firestore.FieldValue.increment(newItem.price)
-    }).then(() => {
-      alert(`Se agregó ${title}` );
-    });
+  }
+  var design = ""
+  if (productType != "mug") {
+    design += "rounded-t-xl"
+  } else {
+    design += "rounded-t-xl w-11/12"
   }
 
   return (
     <div className="shadow-lg w-56 h-auto flex bg-white flex-col m-3 rounded-xl">
-      <div className="w-56 h-56 rounded-t-xl">
-        <StorageImage className="rounded-t-xl" storagePath={image}/>
+      <div className="w-56 h-56 rounded-t-xl flex justify-center items-center">
+        <StorageImage className={design} storagePath={`${image}/${productType}.jpg`}/>
       </div>
       <div className="px-5 py-3 flex flex-col justify-center items-center">
         <p className="text-xs text-black truncate">{title}</p>
         <div className="flex flex-row justify-around w-full mt-2">
-          <button className="text-xs bg-indigo-600 px-2 py-1 text-white rounded-md w-7/12" onClick={addToCart}>Add to cart</button>
-          <button className="text-xs bg-green-600 px-2 py-1 text-white rounded-md w-4/12">View</button>
+          <button className="text-xs bg-indigo-600 px-2 py-1 text-white rounded-md w-11/12" onClick={addToCart}>Add to cart</button>
         </div>
       </div>
     </div>

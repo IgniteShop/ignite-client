@@ -14,9 +14,27 @@
     width: 60%;
 }
 
-.active span {
+.indigo {
     background-color: #5763DD;
     color: white;
     padding: 3px 12px 3px 12px;
     border-radius: 10px;
+}
+
+.account:hover{
+    cursor: pointer;
+}
+
+.header{
+    height: 60px;
+}
+
+.mainPageHeader{
+    background-color: #4C51BF;
+}
+
+.mainPageHeader > .boton {
+    background-color: #ffffff;
+    border-radius: 15px;
+    cursor: pointer;
 }
