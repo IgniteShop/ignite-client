@@ -47,9 +47,10 @@ function SignUpForm(){
                     total:0
                 })
     
-                current_user.updateProfile({displayName: username});
+                current_user.updateProfile({displayName: username}).then(() => {
+                    history.push('/login');
+                });
     
-                history.push('/login');
             } else {
                 MySwal.fire({
                     title: <p>An error ocurred!</p>,

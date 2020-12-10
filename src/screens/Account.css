@@ -16,7 +16,6 @@
 }
 
 .sidebar-account {
-    height: -webkit-fill-available;
     border-radius: 10px;
     box-shadow: 2px 4px 4px #cecece;
     background-color: #F4F4F4;

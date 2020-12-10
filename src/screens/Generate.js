@@ -224,12 +224,20 @@ function Generate() {
 
                         </div>
                         {/* Images Left */}
+                        {user.gen_left == 0 ?
+                        <div className="flex justify-center mt-5 text-red-600 text-md font-medium">
+                            <p>
+                                You have <b className="text-red-600">{user.gen_left}</b>{' '}
+                                images left!
+                            </p>
+                        </div> :
                         <div className="flex justify-center mt-5 text-indigo-600 text-md font-medium">
                             <p>
                                 You still have <b className="text-red-600">{user.gen_left}</b>{' '}
                                 images left!
                             </p>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
