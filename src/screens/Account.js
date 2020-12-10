@@ -18,13 +18,6 @@ function Account() {
 	const { user, setUser } = useContext(UserContext);
 	const history = useHistory();
 
-	useEffect(() => {
-		console.log("USER /account: ", user);
-		// if(!user){
-		//   history.push('/login');
-		// }
-	}, []);
-
 	return (
 		<div className="fit-account flex flex-col pt-20">
 			{/* Content */}
