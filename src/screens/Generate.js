@@ -9,11 +9,15 @@ function Generate() {
   const history = useHistory();
   const [image, setImage] = useState(Placeholder);
 
-  useEffect(() => {
-    if(Object.entries(user).length === 0) {
-      history.push('login')
-    }
-  })
+  // const getUser = async () => {
+  //   return await user
+  // }
+  // useEffect(() => {
+  //   getUser()
+  //   if(Object.entries(user).length === 0) {
+  //     history.push('login')
+  //   }
+  // }, [])
 
   return (
     <div className="fit__generate flex flex-col mb-4 pt-20">

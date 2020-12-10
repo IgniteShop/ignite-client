@@ -15,13 +15,14 @@ require ('firebase/auth')
 
 function Account() {
   const MySwal = withReactContent(Swal);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory()
 
   useEffect(() => {
-    if(!user){
-      history.push('/login');
-    }
+    console.log("USER /account: ", user)
+    // if(!user){
+    //   history.push('/login');
+    // }
   }, [])
 
   return (
@@ -57,6 +58,7 @@ function Account() {
               <button className="flex bg-red-600 text-white rounded-md font-medium py-2 px-5 justify-center mt-3" onClick={() => {
                 firebase.auth().signOut().then(function() {
                   // Sign-out successful.
+                  setUser({})
                   history.push("/login")
                 }).catch(function(error) {
                   // An error happened.

@@ -13,6 +13,7 @@ import Cart from './screens/Cart.js';
 import Stock from './screens/Stock.js';
 import Home from './screens/Home.js';
 import Page404 from './screens/404.js';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   return (
@@ -24,13 +25,13 @@ function App() {
 					<Route exact path='/' component={Home}/>
 					<Route exact path='/register' component={Register}/>
 					<Route exact path='/login' component={Login}/>  
-					<Route exact path='/generate' component={Generate}/>
 					<Route exact path='/shop' component={Shop}/>
-					<Route exact path='/account' component={Account}/>
-					<Route exact path='/product' component={Product}/>
-					<Route exact path='/cart' component={Cart}/>
 					<Route exact path='/aboutus' component={AboutUs}/>
-					<Route exact path='/generateStock' component={Stock}/>
+					<PrivateRoute exact path='/generate' component={Generate}/>
+					<PrivateRoute exact path='/account' component={Account}/>
+					<PrivateRoute exact path='/product' component={Product}/>
+					<PrivateRoute exact path='/cart' component={Cart}/>
+					<PrivateRoute exact path='/generateStock' component={Stock}/>
 					<Route component={Page404}/>
 				</Switch>
 			</div>

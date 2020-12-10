@@ -50,7 +50,7 @@ function LoginForm(){
     const Login = () => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(async (user) => {
             if(user) {
-                console.log(user);
+                // console.log(user);
                 const userData = await getUserData(user['user'].uid)
                 console.log("DATA: ", userData)
                 

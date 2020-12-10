@@ -19,7 +19,7 @@ export default function Page404() {
                 <div className="flex flex-col text-center text-gray-600 description mt-10 w-8/12">
                     <h1 className="text-2xl">We couldn't find the page you were looking for :(</h1>
                     <h3>
-                        Buy hey! Keep exploring!
+                        But hey! Keep exploring!
                     </h3>
                 </div>
             </div>

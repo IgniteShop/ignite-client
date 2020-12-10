@@ -50,4 +50,4 @@ export function UserContextProvider({ children }) {
 	)
 }
 
-export default UserContext;
+export default UserContext
