@@ -15,7 +15,7 @@ function Cart() {
   const history = useHistory();
 
   useEffect(()=> {
-    if(user !== {}){
+    if(Object.entries(user).length != 0){
       var db = firebase.firestore();
 
       try {
@@ -35,7 +35,7 @@ function Cart() {
 
   if(CartItems === {} || total === 0){
     return (
-      <div className="fit-cart flex flex-col">
+      <div className="fit-cart flex flex-col pt-20">
         <div className="flex w-screen flex-col h-full align-center">
           {/* Title */}
           <div className="w-screen flex justify-center titleBar">
@@ -44,7 +44,7 @@ function Cart() {
           <div className="flex items-center justify-center flex-col h-full">
           {/* Image */}
             <div className="flex justify-center cart__image">
-              <img className="flex rounded-t-xl" src={SoloCart} alt="Solo Cart" />
+              <img className="flex rounded-t-xl w-8/12" src={SoloCart} alt="Solo Cart" />
             </div>
           </div>
           {/* Description */}

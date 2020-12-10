@@ -5,12 +5,15 @@ import { useHistory } from 'react-router-dom';
 import 'firebase/auth';
 import 'firebase/database';
 import firebase from "firebase";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import UserContext from '../UserContextProvider';
 
 function LoginForm(){
     const { setUser } = useContext(UserContext)
     const history = useHistory();
+    const MySwal = withReactContent(Swal)
 
     useEffect(() => {
         firebase.auth().signOut();
@@ -25,65 +28,83 @@ function LoginForm(){
     const getUserData = async (uid) => {
         const db = firebase.firestore()
         const userRef = db.collection("users").doc(uid)
-        const doc = await userRef.get()
+        const doc = await userRef.get().catch(() => {
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
+        })
         if(doc.exists) {
             const userData = doc.data()
             return userData
-        } else {
-            alert("Something went wrong :(")
         }
     }
 
     const Login = () => {
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((user) => {
-            history.push("account")
-        })
-        .catch((error) => {alert(error)});
-
-        firebase.auth().onAuthStateChanged(async user => {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(async (user) => {
             if(user) {
-                console.log(user.uid);
-                const userData = await getUserData(user.uid)
+                console.log(user);
+                const userData = await getUserData(user['user'].uid)
                 console.log("DATA: ", userData)
                 
-                setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
-                history.push('account');
+                setUser({ "email": user['user'].email, "uid": user['user'].uid, "name": userData.name, "gen_left": userData.gens_remaining })
+                history.push("/");
             }
-        })
+        }).catch(() => {
+            MySwal.fire({
+                title: <p>Usuario o contraseña incorrectos</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
+        }
+        )
     };
 
     const loginWithGoogle = () => {
-        firebase.auth().signOut();
-
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
-        firebase.auth().signInWithPopup(provider).then(result => {
+        firebase.auth().signInWithPopup(provider).then(async result => {
             // Get user info returned by Google's API. result.user is
             let googleData = result.user.providerData[0];
-            let id = googleData.uid;
-
-            firebase.firestore().collection('users').doc(id).set({
-                gens_remaining: 5,
-                name: googleData.displayName
+            let id = result.user.uid;
+            
+            const userData = await getUserData(id).catch(() => {
+                firebase.firestore().collection('users').doc(id).set({
+                    gens_remaining: 5,
+                    name: googleData.displayName
+                });
+                result.user.updateProfile({displayName: googleData.displayName});
             });
-            result.user.updateProfile({displayName: googleData.displayName});
 
-            history.push('account');
-
+            setUser({ "email": googleData.email, "uid": googleData.uid, "name": userData.name, "gen_left": userData.gens_remaining })
+            
+            history.push('/');
         }).catch(error => {
-            alert(error);
-        });
-
-        firebase.auth().onAuthStateChanged(async user => {
-            if(user) {
-                console.log(user.uid);
-                const userData = await getUserData(user.uid)
-                console.log("DATA: ", userData)
-                
-                setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
-            }
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
     };
 

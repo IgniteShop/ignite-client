@@ -6,10 +6,13 @@ import line from "../img/line.png";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import UserContext from '../UserContextProvider';
 
 function SignUpForm(){
+    const MySwal = withReactContent(Swal);
     const firebase = useFirebaseApp();
     const firestore = useFirestore();
     const history = useHistory();
@@ -26,9 +29,7 @@ function SignUpForm(){
     const validEmail = (value) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
     const validPassword = (values) => values.password === values.repeatPassword || !values.password || !values.repeatPassword;
 
-    const signUp = () => { 
-        firebase.auth().signOut();
- 
+    const signUp = () => {  
         //TODO: mensaje cuando el usuario se crea, mensaje si el correo ya está ocupado
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(result => {
@@ -48,12 +49,32 @@ function SignUpForm(){
     
                 current_user.updateProfile({displayName: username});
     
-                history.push('account');
+                history.push('/login');
             } else {
-                alert("NO");
+                MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             }
         }).catch(error => {
-        alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
     };
 
@@ -65,7 +86,17 @@ function SignUpForm(){
             const userData = doc.data()
             return userData
         } else {
-            alert("Something went wrong :(")
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         }
     }
 
@@ -75,36 +106,35 @@ function SignUpForm(){
         let provider = new firebasic.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
-        firebase.auth().signInWithPopup(provider).then(result => {
+        firebase.auth().signInWithPopup(provider).then(async result => {
             // Get user info returned by Google's API. result.user is
             let googleData = result.user.providerData[0];
-            let id = googleData.uid;
-
-            firestore.collection('users').doc(id).set({
-                gens_remaining: 5,
-                name: googleData.displayName
+            let id = result.user.uid;
+            
+            const userData = await getUserData(id).catch(() => {
+                firebase.firestore().collection('users').doc(id).set({
+                    gens_remaining: 5,
+                    name: googleData.displayName
+                });
+                result.user.updateProfile({displayName: googleData.displayName});
             });
 
-            firestore.collection('cart').doc(id).set({
-                items:{},
-                total:0
-            })
-            result.user.updateProfile({displayName: googleData.displayName});
+            setUser({ "email": googleData.email, "uid": googleData.uid, "name": userData.name, "gen_left": userData.gens_remaining })
 
-            history.push('account');
-
-            firebase.auth().onAuthStateChanged(async user => {
-                if(user) {
-                    console.log(user.uid);
-                    const userData = await getUserData(user.uid)
-                    console.log("DATA: ", userData)
-                    
-                    setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
-                }
-            });
+            history.push('/');
 
         }).catch(error => {
-            alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
 
     };

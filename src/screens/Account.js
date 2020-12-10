@@ -6,19 +6,22 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase";
 import UserContext from '../UserContextProvider';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import ProfilePicture from '../img/profile.png';
+
 require("firebase/firestore")
 require ('firebase/auth')
 
 function Account() {
+  const MySwal = withReactContent(Swal);
+  const { user } = useContext(UserContext);
   const history = useHistory()
-  const [userEmail, setUserEmail] = useState("")
-  const { user } = useContext(UserContext)
-  
-  console.log("CONTEXT USER: ", user)
+
   useEffect(() => {
-    // const user = firebase.auth().currentUser
-    // console.log("USER: ", user) 
-    // setUserEmail(user.email)
+    if(!user){
+      history.push('/login');
+    }
   }, [])
 
   return (
@@ -33,7 +36,7 @@ function Account() {
             <div className="flex profile__image justify-center mt-5 rounded-full">
               <img
                 className="w-48 h-48 md:w-32 md:h-32 xl:w-48 xl:h-48 object-cover overflow-hidden"
-                src="https://pixy.org/src/7/thumbs350/76776.jpg"
+                src={ProfilePicture}
                 alt="Profile"
               />
             </div>
@@ -57,7 +60,17 @@ function Account() {
                   history.push("/login")
                 }).catch(function(error) {
                   // An error happened.
-                  alert(error)
+                  MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                  })
                 });
               }}>
                 Sign out
