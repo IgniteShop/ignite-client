@@ -5,12 +5,15 @@ import { useHistory } from 'react-router-dom';
 import 'firebase/auth';
 import 'firebase/database';
 import firebase from "firebase";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import UserContext from '../UserContextProvider';
 
 function LoginForm(){
     const { setUser } = useContext(UserContext)
     const history = useHistory();
+    const MySwal = withReactContent(Swal)
 
     useEffect(() => {
         firebase.auth().signOut();
@@ -26,7 +29,17 @@ function LoginForm(){
         const db = firebase.firestore()
         const userRef = db.collection("users").doc(uid)
         const doc = await userRef.get().catch(() => {
-            alert("Something went wrong :(");
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         })
         if(doc.exists) {
             const userData = doc.data()
@@ -45,7 +58,17 @@ function LoginForm(){
                 history.push("/");
             }
         }).catch(() => {
-            alert("Usuario o contraseña incorrecto");
+            MySwal.fire({
+                title: <p>Usuario o contraseña incorrectos</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         }
         )
     };
@@ -71,7 +94,17 @@ function LoginForm(){
             
             history.push('/');
         }).catch(error => {
-            alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
     };
 

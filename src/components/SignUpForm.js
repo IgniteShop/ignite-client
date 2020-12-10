@@ -6,10 +6,13 @@ import line from "../img/line.png";
 import 'firebase/auth';
 import 'firebase/database';
 import firebasic from "firebase";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import UserContext from '../UserContextProvider';
 
 function SignUpForm(){
+    const MySwal = withReactContent(Swal);
     const firebase = useFirebaseApp();
     const firestore = useFirestore();
     const history = useHistory();
@@ -48,10 +51,30 @@ function SignUpForm(){
     
                 history.push('/login');
             } else {
-                alert("NO");
+                MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                })
             }
         }).catch(error => {
-        alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
     };
 
@@ -63,7 +86,17 @@ function SignUpForm(){
             const userData = doc.data()
             return userData
         } else {
-            alert("Something went wrong :(")
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         }
     }
 
@@ -91,7 +124,17 @@ function SignUpForm(){
             history.push('/');
 
         }).catch(error => {
-            alert(error);
+            MySwal.fire({
+                title: <p>An error ocurred!</p>,
+                toast: true,
+                icon: "error",
+                timer: 1500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                background: "#fff",
+                iconColor: "#e84118",
+                position: 'bottom-end',
+            })
         });
 
     };

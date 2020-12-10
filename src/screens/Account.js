@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Account.css";
 import ItemAccount from "../components/ItemAccount";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,12 +6,15 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase";
 import UserContext from '../UserContextProvider';
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import ProfilePicture from '../img/profile.png';
 
 require("firebase/firestore")
 require ('firebase/auth')
 
 function Account() {
+  const MySwal = withReactContent(Swal);
   const { user } = useContext(UserContext);
   const history = useHistory()
 
@@ -33,13 +36,13 @@ function Account() {
             <div className="flex profile__image justify-center mt-5 rounded-full">
               <img
                 className="w-48 h-48 md:w-32 md:h-32 xl:w-48 xl:h-48 object-cover overflow-hidden"
-                src="https://pixy.org/src/7/thumbs350/76776.jpg"
+                src={ProfilePicture}
                 alt="Profile"
               />
             </div>
             {/* Name */}
             <div className="flex mt-5 name">
-              <h1 className="text-2xl text-center">Jane Doe</h1>
+            <h1 className="text-2xl text-center">{ user.name }</h1>
             </div>
             {/* Email */}
             <div className="flex flex-col justify-center text-center mt-5 email">
@@ -57,7 +60,17 @@ function Account() {
                   history.push("/login")
                 }).catch(function(error) {
                   // An error happened.
-                  alert(error)
+                  MySwal.fire({
+                    title: <p>An error ocurred!</p>,
+                    toast: true,
+                    icon: "error",
+                    timer: 1500,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    background: "#fff",
+                    iconColor: "#e84118",
+                    position: 'bottom-end',
+                  })
                 });
               }}>
                 Sign out
