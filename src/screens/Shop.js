@@ -6,6 +6,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import firebase from "firebase";
 import 'firebase/database';
 import TimeLeft from "../components/TimeLeft";
+import Loader from '../components/Loader';
 
 
 function Shop() {
@@ -32,7 +33,7 @@ function Shop() {
       <div className="h-full overflow-x-auto flex main w-screen bg-gray-50 px-12 justify-around">
       
         {/* Content */}
-        <Suspense fallback={<p className="text-xl text-indigo-600">Loading...</p>} className="flex justify-center align-center">
+        <Suspense fallback={<Loader type={"bubbles"} color={"#5a67d8"}/>} className="flex justify-center align-center">
           <div className="flex w-9/12 justify-around py-4">
             {/* Main Content */}
             <ProductContainer searchTerm={searchterm} productType={productType}/>

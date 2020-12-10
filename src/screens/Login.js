@@ -3,11 +3,12 @@ import "./Login.css";
 import shirts from "../img/MainShirts.png";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import Loader from '../components/Loader';
 
 function Login (){
   return (
     <div className="flex mb-4 background h-full items-center justify-center pt-12 px-10">
-      <Suspense fallback={<p className="text-indigo-600">Loading...</p>}>
+      <Suspense fallback={<Loader type={"bubbles"} color={"#5a67d8"}/>}>
         {/* Welcome Back */}
         <div className="flex w-1/2 flex-col justify-center text-indigo-600">
           <div className="px-32 py-5 text-center">

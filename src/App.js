@@ -14,11 +14,12 @@ import Stock from './screens/Stock.js';
 import Home from './screens/Home.js';
 import Page404 from './screens/404.js';
 import PrivateRoute from './PrivateRoute';
+import Loader from './components/Loader';
 
 function App() {
   return (
 	<Router>
-		<Suspense fallback={<p>Loading...</p>}>
+		<Suspense fallback={<Loader type={"bubbles"} color={"#5a67d8"}/>}>
 			<div className="app__main">
 				<Header />
 				<Switch>
