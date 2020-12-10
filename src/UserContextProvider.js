@@ -14,7 +14,7 @@ export function UserContextProvider({ children }) {
             const userData = doc.data()
             return userData
         } else {
-            alert("Something went wrong :(")
+            alert("User document doesn't exist")
         }
     }
 
@@ -22,9 +22,7 @@ export function UserContextProvider({ children }) {
 		// firebase.auth().onAuthStateChanged(setUser)
 		firebase.auth().onAuthStateChanged(async user => {
             if(user) {
-                console.log(user.uid);
                 const userData = await getUserData(user.uid)
-                console.log("DATA: ", userData)
                 
                 setUser({ "email": user.email, "uid": user.uid, "name": userData.name, "gen_left": userData.gens_remaining })
             }
